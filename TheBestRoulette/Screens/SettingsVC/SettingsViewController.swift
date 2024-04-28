@@ -38,6 +38,11 @@ final class SettingsViewController: UIViewController {
         presenter.viewDidLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    
     // MARK: - Private Methods
     
     private func setupUI() {

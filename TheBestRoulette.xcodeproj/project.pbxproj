@@ -36,6 +36,7 @@
 		39B413702BDE589400600AD3 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B4136E2BDE589400600AD3 /* GameViewController.swift */; };
 		39B413712BDE589400600AD3 /* GameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39B4136F2BDE589400600AD3 /* GameViewController.xib */; };
 		39B413732BDE6AD200600AD3 /* TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B413722BDE6AD200600AD3 /* TabBarVC.swift */; };
+		39B413912BDEE75C00600AD3 /* Alatsi-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 39B413902BDEE75C00600AD3 /* Alatsi-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		39B4136E2BDE589400600AD3 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		39B4136F2BDE589400600AD3 /* GameViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameViewController.xib; sourceTree = "<group>"; };
 		39B413722BDE6AD200600AD3 /* TabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVC.swift; sourceTree = "<group>"; };
+		39B413902BDEE75C00600AD3 /* Alatsi-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Alatsi-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				39B413122BDE50FB00600AD3 /* Screens */,
 				39B412FE2BDE503E00600AD3 /* AppDelegate.swift */,
 				39B413292BDE553100600AD3 /* Extensions.swift */,
+				39B413902BDEE75C00600AD3 /* Alatsi-Regular.ttf */,
 				39B413072BDE504000600AD3 /* Assets.xcassets */,
 				39B413092BDE504000600AD3 /* LaunchScreen.storyboard */,
 				39B4130C2BDE504000600AD3 /* Info.plist */,
@@ -255,6 +258,7 @@
 				39B413712BDE589400600AD3 /* GameViewController.xib in Resources */,
 				39B4130B2BDE504000600AD3 /* Base in Resources */,
 				39B413282BDE520700600AD3 /* LogInViewController.xib in Resources */,
+				39B413912BDEE75C00600AD3 /* Alatsi-Regular.ttf in Resources */,
 				39B4135D2BDE57A100600AD3 /* SettingsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
