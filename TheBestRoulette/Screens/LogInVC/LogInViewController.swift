@@ -38,29 +38,24 @@ final class LogInViewController: UIViewController {
         presenter.viewDidLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    
     // MARK: - Private Methods
     
     private func setupUI() {
         
-        //        let vc = OnboardingViewControllerAzure()
-        //        let nc = NavigationControllerWhimsical(rootViewController: vc)
-        //        nc.isNavigationBarHidden = true
-        //        let transition = CATransition()
-        //        transition.duration = 0.40
-        //        transition.type = .fade
-        //        if let window = UIApplication.shared.windows.first {
-        //            window.layer.add(transition, forKey: "fade")
-        //            window.rootViewController = nc
-        //        }
-        let tabBarController = TabBarController()
-        tabBarController.modalPresentationStyle = .fullScreen
-        let transition = CATransition()
-        transition.duration = 0.40
-        transition.type = .fade
-        if let window = UIApplication.shared.windows.first {
-            window.layer.add(transition, forKey: "fade")
-            window.rootViewController = tabBarController
-        }
+//        let tabBarController = TabBarController()
+//        tabBarController.modalPresentationStyle = .fullScreen
+//        let transition = CATransition()
+//        transition.duration = 0.40
+//        transition.type = .fade
+//        if let window = UIApplication.shared.windows.first {
+//            window.layer.add(transition, forKey: "fade")
+//            window.rootViewController = tabBarController
+//        }
     }
     
     // MARK: - IBActions
