@@ -11,6 +11,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LogInViewController" customModule="TheBestRoulette" customModuleProvider="target">
             <connections>
+                <outlet property="loginTextField" destination="cWc-9y-qom" id="Tyk-f5-j0d"/>
+                <outlet property="passTextField" destination="lrN-HU-ZDX" id="iwo-4O-xaa"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -73,6 +75,9 @@
                                         </fragment>
                                     </attributedString>
                                     <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <action selector="loginTextFieldAction:" destination="-1" eventType="editingDidEnd" id="5ip-wf-4O5"/>
+                                    </connections>
                                 </textField>
                             </subviews>
                             <color key="backgroundColor" red="0.1803921568627451" green="0.17254901960784313" blue="0.16078431372549018" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -123,6 +128,9 @@
                                         </fragment>
                                     </attributedString>
                                     <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <action selector="passTextFieldAction:" destination="-1" eventType="editingDidEnd" id="HVY-M9-idE"/>
+                                    </connections>
                                 </textField>
                             </subviews>
                             <color key="backgroundColor" red="0.18039215689999999" green="0.17254901959999999" blue="0.16078431369999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -142,15 +150,50 @@
                         </view>
                     </subviews>
                 </stackView>
+                <stackView opaque="NO" contentMode="scaleToFill" spacing="113" translatesAutoresizingMaskIntoConstraints="NO" id="VIW-og-12X">
+                    <rect key="frame" x="16" y="328" width="361" height="34.333333333333314"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GrW-fJ-Gfx">
+                            <rect key="frame" x="0.0" y="0.0" width="124" height="34.333333333333336"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" title="logIn"/>
+                            <connections>
+                                <action selector="loginAction:" destination="-1" eventType="touchUpInside" id="d0A-CH-DOv"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AlV-NO-OKp">
+                            <rect key="frame" x="237" y="0.0" width="124" height="34.333333333333336"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" title="signUp"/>
+                            <connections>
+                                <action selector="signUpAction:" destination="-1" eventType="touchUpInside" id="blC-gO-u3v"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CIn-bm-ZNh">
+                    <rect key="frame" x="16" y="402.33333333333331" width="361" height="34.333333333333314"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Anon?"/>
+                    <connections>
+                        <action selector="anonAction:" destination="-1" eventType="touchUpInside" id="KcT-lx-LiY"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" name="black"/>
             <constraints>
+                <constraint firstItem="VIW-og-12X" firstAttribute="top" secondItem="ScV-wQ-4gk" secondAttribute="bottom" constant="16" id="1l1-3j-lGD"/>
                 <constraint firstItem="Upv-DT-pgO" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="AeU-oD-c6o"/>
                 <constraint firstItem="ScV-wQ-4gk" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Cc5-LM-ZfW"/>
+                <constraint firstItem="CIn-bm-ZNh" firstAttribute="top" secondItem="VIW-og-12X" secondAttribute="bottom" constant="40" id="Ib1-Zp-kUg"/>
+                <constraint firstItem="CIn-bm-ZNh" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="PSA-hq-g7f"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ScV-wQ-4gk" secondAttribute="trailing" constant="20" id="YkE-az-rEP"/>
                 <constraint firstItem="Upv-DT-pgO" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="gWg-1V-sNH"/>
                 <constraint firstItem="ScV-wQ-4gk" firstAttribute="top" secondItem="Upv-DT-pgO" secondAttribute="bottom" constant="96" id="kbA-yg-FrE"/>
+                <constraint firstItem="VIW-og-12X" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="oeH-an-XRd"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="CIn-bm-ZNh" secondAttribute="trailing" constant="16" id="shv-KN-2Zd"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="VIW-og-12X" secondAttribute="trailing" constant="16" id="tgk-N1-Uub"/>
             </constraints>
             <point key="canvasLocation" x="81.679389312977094" y="26.760563380281692"/>
         </view>

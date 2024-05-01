@@ -15,6 +15,8 @@ final class RatingViewController: UIViewController {
     
     // MARK: - IBOutlet
     
+    @IBOutlet weak var usersTableView: UITableView!
+    
     // MARK: - Properties
     
     private let presenter: RatingPresenterProtocol
@@ -46,6 +48,10 @@ final class RatingViewController: UIViewController {
     // MARK: - Private Methods
     
     private func setupUI() {
+        usersTableView.separatorColor = .clear
+        usersTableView.register(UINib(nibName: "RatingTableViewCell", bundle: nil), forCellReuseIdentifier: "RatingCell")
+        usersTableView.delegate = self
+        usersTableView.dataSource = self
     }
     
     // MARK: - IBActions
@@ -56,5 +62,24 @@ final class RatingViewController: UIViewController {
 
 extension RatingViewController: RatingViewControllerProtocol {
     func setup(with viewModel: RatingViewModel) {
+        usersTableView.reloadData()
+    }
+}
+
+extension RatingViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return presenter.viewModel?.cellModels.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let data = presenter.viewModel?.cellModels[indexPath.row]
+        
+        if let ratingCell = tableView.dequeueReusableCell(withIdentifier: "RatingCell", for: indexPath) as? RatingTableViewCell, let cellModel = data {
+            ratingCell.selectionStyle = .none
+            ratingCell.setup(with: cellModel, currentNumber: indexPath.row + 1)
+            return ratingCell
+        } else {
+            return UITableViewCell()
+        }
     }
 }

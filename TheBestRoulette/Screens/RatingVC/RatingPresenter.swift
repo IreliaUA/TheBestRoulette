@@ -15,7 +15,6 @@ protocol RatingPresenterProtocol {
 
 final class RatingPresenter: RatingPresenterProtocol {
     
-    // Dependencies
     weak var view: RatingViewControllerProtocol?
     private let viewModelFactory: RatingViewModelFactoryProtocol
     
@@ -32,8 +31,14 @@ final class RatingPresenter: RatingPresenterProtocol {
     var viewModel: RatingViewModel?
     
     func viewDidLoad() {
-        let createdViewModel = viewModelFactory.makeViewModel()
-        viewModel = createdViewModel
-        view?.setup(with: createdViewModel)
+        getUsers { users in
+            let createdViewModel = self.viewModelFactory.makeViewModel(users: users)
+            self.viewModel = createdViewModel
+            self.view?.setup(with: createdViewModel)
+        }
+    }
+    
+    func getUsers(completion: (([[String : Any]]) -> Void)?) {
+        completion?([[:]])
     }
 }

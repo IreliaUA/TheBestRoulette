@@ -11,6 +11,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingsViewController" customModule="TheBestRoulette" customModuleProvider="target">
             <connections>
+                <outlet property="deleteAccStack" destination="c7k-Wc-ZiF" id="mBJ-oc-VNT"/>
+                <outlet property="logOutStack" destination="PET-y0-MLG" id="wYP-cj-K7H"/>
+                <outlet property="rateAppStack" destination="04M-cb-aSt" id="ONP-Cr-wlT"/>
+                <outlet property="shareAppStack" destination="djQ-hU-a0h" id="1ug-eh-T8C"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -284,7 +288,7 @@
         <image name="shareRate" width="22" height="22"/>
         <image name="starsRate" width="25" height="24"/>
         <namedColor name="black">
-            <color red="0.11764705882352941" green="0.11764705882352941" blue="0.11764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.090196078431372548" green="0.082352941176470587" blue="0.066666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="lightBlack">
             <color red="0.1803921568627451" green="0.17254901960784313" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
