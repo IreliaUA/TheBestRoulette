@@ -14,10 +14,17 @@ protocol AuthManagerProtocol {
     func logIn(email: String, pass: String, completion: ((Bool) -> Void)?)
     func register(email: String, pass: String, name: String, completion: ((Bool) -> Void)?)
     func signInAnonymously(completion: ((Bool) -> Void)?)
+    func getAllData(completion: (([UserInfo]) -> Void)?)
 }
 
 final class AuthManager: AuthManagerProtocol {
+    
+    static var shared = AuthManager()
     var isAuth = false
+    
+    init() {
+        checkStatus()
+    }
     
     func logIn(email: String, pass: String, completion: ((Bool) -> Void)?) {
         Auth.auth().signIn(withEmail: email, password: pass) { result, error in
@@ -99,11 +106,37 @@ final class AuthManager: AuthManagerProtocol {
         }
     }
     
-    func getAllData() {
+    func getAllData(completion: (([UserInfo]) -> Void)?) {
+        var users: [UserInfo] = []
         let ref = Database.database().reference().child("users")
-        ref.getData { error, data in
-            print(data)
+        ref.getData { error, dataSnapshot in
+            guard let data = dataSnapshot?.value as? [String: Any] else {
+                print("Failed to parse data snapshot")
+                completion?([])
+                return
+            }
+            
+            for (_, userData) in data {
+                guard let userData = userData as? [String: Any],
+                      let coins = userData["coins"] as? Int,
+                      let email = userData["email"] as? String,
+                      let name = userData["name"] as? String,
+                      let winRate = userData["winRate"] as? Int else {
+                    continue
+                }
+                
+                let user = UserInfo(coins: coins, email: email, name: name, winRate: winRate)
+                users.append(user)
+            }
+            
+            completion?(users)
         }
     }
-    
+}
+
+struct UserInfo {
+    let coins: Int
+    let email: String
+    let name: String
+    let winRate: Int
 }

@@ -8,19 +8,24 @@
 import UIKit
 
 class RatingTableViewCell: UITableViewCell {
-
+    @IBOutlet weak var nameLabel: UILabel!
+    
+    @IBOutlet weak var winRateLabel: UILabel!
+    @IBOutlet weak var coinsLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
     }
     
     func setup(with model: RatingCellModel, currentNumber: Int) {
+        nameLabel.text = model.title
+        winRateLabel.text = "win rate: \(model.subtitle)%"
+        coinsLabel.text = model.money
         
     }
     

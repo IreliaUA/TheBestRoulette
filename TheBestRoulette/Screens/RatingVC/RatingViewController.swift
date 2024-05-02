@@ -52,6 +52,7 @@ final class RatingViewController: UIViewController {
         usersTableView.register(UINib(nibName: "RatingTableViewCell", bundle: nil), forCellReuseIdentifier: "RatingCell")
         usersTableView.delegate = self
         usersTableView.dataSource = self
+        
     }
     
     // MARK: - IBActions

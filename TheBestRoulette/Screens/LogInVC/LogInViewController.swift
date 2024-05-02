@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol LogInViewControllerProtocol: AnyObject {
+protocol LogInViewControllerProtocol: UIViewController {
     func setup(with: LogInViewModel)
     func continueMove()
 }
@@ -18,12 +18,14 @@ final class LogInViewController: UIViewController {
     
     @IBOutlet weak var loginTextField: UITextField!
     @IBOutlet weak var passTextField: UITextField!
+    @IBOutlet weak var nameTexField: UITextField!
     
     // MARK: - Properties
     
-    private let presenter: LogInPresenterProtocol
+    private var presenter: LogInPresenterProtocol
     private var login: String = ""
     private var pass: String = ""
+    private var name: String = ""
     
     // MARK: - Lifecycle
     
@@ -42,6 +44,7 @@ final class LogInViewController: UIViewController {
         
         setupUI()
         presenter.viewDidLoad()
+        textFieldSetUp()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,8 +74,36 @@ final class LogInViewController: UIViewController {
 //                }
     }
     
+    func textFieldSetUp() {
+        loginTextField.textColor = UIColor.white
+        let placeholderText = "Enter your email."
+        let attributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor(named: "lightGrey") ?? .lightGrey,
+            .font: UIFont.systemFont(ofSize: 14)
+        ]
+        loginTextField.attributedPlaceholder = NSAttributedString(string: placeholderText, attributes: attributes)
+        
+        passTextField.textColor = UIColor.white
+        let placeholderTex = "Enter your password."
+        passTextField.attributedPlaceholder = NSAttributedString(string: placeholderTex, attributes: attributes)
+        
+        nameTexField.textColor = UIColor.white
+        let placeholderTe = "If you are a new user."
+        nameTexField.attributedPlaceholder = NSAttributedString(string: placeholderTe, attributes: attributes)
+    }
+    
     @objc func hideKeyboard() {
         view.endEditing(true)
+    }
+    
+    func checkCreds() -> Bool {
+        pass = passTextField.text ?? ""
+        login = loginTextField.text ?? ""
+        if pass.count >= 6 && isValidEmail(login) {
+            return true
+        } else {
+            return false
+        }
     }
     
     // MARK: - IBActions
@@ -82,36 +113,50 @@ final class LogInViewController: UIViewController {
         if let text = sender.text {
             if isValidEmail(text) {
                 login = text
-            } else {
-                print("error")
             }
-        } else {
-            print("no text")
         }
     }
     
     
     @IBAction func passTextFieldAction(_ sender: UITextField) {
-        if let text = sender.text {
+        if let text = sender.text, !text.isEmpty {
             pass = text
-        } else {
-            print("no text")
         }
     }
     @IBAction func loginAction(_ sender: UIButton) {
-        presenter.logIn(email: login, pass: pass)
+        if checkCreds() {
+            presenter.logIn(email: login, pass: pass)
+        } else {
+            self.showAlert(title: "Incorrect password or login", message: "Password must have 6 characters or more", okText: "OK")
+        }
+        
+    }
+    
+    @IBAction func nameAction(_ sender: UITextField) {
+        if let text = sender.text, !text.isEmpty {
+            name = nameTexField.text ?? ""
+            name = text
+        }
     }
     
     @IBAction func signUpAction(_ sender: UIButton) {
-        presenter.register(email: login, pass: pass, name: "")
+        
+        if checkCreds() {
+            if name.count >= 1 {
+                presenter.register(email: login, pass: pass, name: name)
+            } else {
+                self.showAlert(title: "Enter your name", okText: "OK")
+            }
+            
+        } else {
+            self.showAlert(title: "Incorrect password or login", message: "Password must have 6 characters or more", okText: "OK")
+        }
     }
     
     @IBAction func anonAction(_ sender: UIButton) {
         presenter.signInAnonymously()
     }
-    
 }
-
 
 // MARK: - Extensions
 

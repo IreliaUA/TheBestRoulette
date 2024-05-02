@@ -15,11 +15,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
         window = UIWindow(frame: UIScreen.main.bounds)
+        Auth.auth().addStateDidChangeListener { auth, user in
+            if user == nil {
+                self.window?.rootViewController = LogInAssembly().assemble()
+                self.window?.makeKeyAndVisible()
+            } else {
+                self.window?.rootViewController = TabBarController()
+                self.window?.makeKeyAndVisible()
+            }
+        }
 
-        var logInVC = LogInAssembly().assemble()
-
-        window?.rootViewController = logInVC
-        window?.makeKeyAndVisible()
+        
         return true
     }
 }

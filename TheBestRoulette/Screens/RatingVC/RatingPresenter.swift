@@ -38,7 +38,9 @@ final class RatingPresenter: RatingPresenterProtocol {
         }
     }
     
-    func getUsers(completion: (([[String : Any]]) -> Void)?) {
-        completion?([[:]])
+    func getUsers(completion: (([UserInfo]) -> Void)?) {
+        AuthManager.shared.getAllData { users in
+           completion?(users)
+        }
     }
 }

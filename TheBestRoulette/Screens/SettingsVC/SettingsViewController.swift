@@ -78,13 +78,16 @@ final class SettingsViewController: UIViewController {
     }
     
     @objc func deleteAccAction() {
-        presenter.deleteAccount()
+        self.showAlert(title: "Do you want to delete your account?", okText: "Yes", cancelText: "No", okAction:  {
+            self.presenter.deleteAccount()
+        })
     }
     
     @objc func logOutAppAction() {
-        presenter.logOut()
+        self.showAlert(title: "Do you want to log out of your account?", okText: "Yes", cancelText: "No", okAction:  {
+            self.presenter.logOut()
+        })
     }
-    
 }
 
 // MARK: - Extensions

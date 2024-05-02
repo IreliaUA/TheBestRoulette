@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		399D13A42BE2E170002E99AF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 399D13A32BE2E170002E99AF /* GoogleService-Info.plist */; };
 		399D13A62BE2F07C002E99AF /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399D13A52BE2F07C002E99AF /* AuthManager.swift */; };
+		399D13AA2BE40D23002E99AF /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399D13A92BE40D23002E99AF /* Alert.swift */; };
+		399D13AC2BE40DDB002E99AF /* CustomVisualEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399D13AB2BE40DDB002E99AF /* CustomVisualEffect.swift */; };
+		399D13AF2BE40F66002E99AF /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 399D13AE2BE40F66002E99AF /* SnapKit */; };
 		39B412FF2BDE503E00600AD3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B412FE2BDE503E00600AD3 /* AppDelegate.swift */; };
 		39B413082BDE504000600AD3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39B413072BDE504000600AD3 /* Assets.xcassets */; };
 		39B4130B2BDE504000600AD3 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 39B4130A2BDE504000600AD3 /* Base */; };
@@ -73,6 +76,8 @@
 /* Begin PBXFileReference section */
 		399D13A32BE2E170002E99AF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		399D13A52BE2F07C002E99AF /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		399D13A92BE40D23002E99AF /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		399D13AB2BE40DDB002E99AF /* CustomVisualEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomVisualEffect.swift; sourceTree = "<group>"; };
 		39B412FB2BDE503E00600AD3 /* TheBestRoulette.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheBestRoulette.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39B412FE2BDE503E00600AD3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		39B413072BDE504000600AD3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -131,6 +136,7 @@
 				39E6EEA72BE026210026E2A8 /* FirebaseDatabaseSwift in Frameworks */,
 				39E6EEB12BE026210026E2A8 /* FirebaseFunctions in Frameworks */,
 				39E6EEC72BE026210026E2A8 /* FirebaseStorageCombine-Community in Frameworks */,
+				399D13AF2BE40F66002E99AF /* SnapKit in Frameworks */,
 				39E6EEC12BE026210026E2A8 /* FirebaseRemoteConfig in Frameworks */,
 				39E6EE9D2BE026210026E2A8 /* FirebaseAppDistribution-Beta in Frameworks */,
 				39E6EEA12BE026210026E2A8 /* FirebaseAuthCombine-Community in Frameworks */,
@@ -169,7 +175,6 @@
 				39B413132BDE511800600AD3 /* Services */,
 				39B413122BDE50FB00600AD3 /* Screens */,
 				39B412FE2BDE503E00600AD3 /* AppDelegate.swift */,
-				39B413292BDE553100600AD3 /* Extensions.swift */,
 				39B413902BDEE75C00600AD3 /* Alatsi-Regular.ttf */,
 				39B413072BDE504000600AD3 /* Assets.xcassets */,
 				399D13A32BE2E170002E99AF /* GoogleService-Info.plist */,
@@ -187,7 +192,6 @@
 				39B413172BDE51AB00600AD3 /* SettingsVC */,
 				39B413162BDE519600600AD3 /* LogInVC */,
 				39B413142BDE512100600AD3 /* TabBarVC */,
-				399D13A52BE2F07C002E99AF /* AuthManager.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -195,6 +199,10 @@
 		39B413132BDE511800600AD3 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				399D13A52BE2F07C002E99AF /* AuthManager.swift */,
+				39B413292BDE553100600AD3 /* Extensions.swift */,
+				399D13A92BE40D23002E99AF /* Alert.swift */,
+				399D13AB2BE40DDB002E99AF /* CustomVisualEffect.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -313,6 +321,7 @@
 				39E6EEC22BE026210026E2A8 /* FirebaseRemoteConfigSwift */,
 				39E6EEC42BE026210026E2A8 /* FirebaseStorage */,
 				39E6EEC62BE026210026E2A8 /* FirebaseStorageCombine-Community */,
+				399D13AE2BE40F66002E99AF /* SnapKit */,
 			);
 			productName = TheBestRoulette;
 			productReference = 39B412FB2BDE503E00600AD3 /* TheBestRoulette.app */;
@@ -344,6 +353,7 @@
 			mainGroup = 39B412F22BDE503E00600AD3;
 			packageReferences = (
 				39E6EE912BE026210026E2A8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				399D13AD2BE40F66002E99AF /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = 39B412FC2BDE503E00600AD3 /* Products */;
 			projectDirPath = "";
@@ -389,6 +399,7 @@
 				39B413272BDE520700600AD3 /* LogInViewController.swift in Sources */,
 				39B413232BDE51E800600AD3 /* LogInViewModelFactory.swift in Sources */,
 				39B412FF2BDE503E00600AD3 /* AppDelegate.swift in Sources */,
+				399D13AC2BE40DDB002E99AF /* CustomVisualEffect.swift in Sources */,
 				39B413552BDE577900600AD3 /* SettingsPresenter.swift in Sources */,
 				39B413562BDE577900600AD3 /* SettingsViewModel.swift in Sources */,
 				39B413572BDE577900600AD3 /* SettingsAssembly.swift in Sources */,
@@ -396,6 +407,7 @@
 				39B413652BDE584A00600AD3 /* GamePresenter.swift in Sources */,
 				39B413662BDE584A00600AD3 /* GameViewModel.swift in Sources */,
 				39B413672BDE584A00600AD3 /* GameAssembly.swift in Sources */,
+				399D13AA2BE40D23002E99AF /* Alert.swift in Sources */,
 				39B413682BDE584A00600AD3 /* GameViewModelFactory.swift in Sources */,
 				39B413582BDE577900600AD3 /* SettingsViewModelFactory.swift in Sources */,
 				39C81C102BE02B2800D303F6 /* RatingTableViewCell.swift in Sources */,
@@ -627,6 +639,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		399D13AD2BE40F66002E99AF /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
 		39E6EE912BE026210026E2A8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -638,6 +658,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		399D13AE2BE40F66002E99AF /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 399D13AD2BE40F66002E99AF /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
 		39E6EE922BE026210026E2A8 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 39E6EE912BE026210026E2A8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
