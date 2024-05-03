@@ -7,5 +7,6 @@
 //
 
 struct GameViewModel {
+    var coins: Int
 }
 

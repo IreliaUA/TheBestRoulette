@@ -15,6 +15,10 @@ protocol AuthManagerProtocol {
     func register(email: String, pass: String, name: String, completion: ((Bool) -> Void)?)
     func signInAnonymously(completion: ((Bool) -> Void)?)
     func getAllData(completion: (([UserInfo]) -> Void)?)
+    func getUserCoins(completion: ((Int) -> Void)?)
+    func getUserWinRate(completion: ((Int) -> Void)?)
+    func changeUserCoins(with newCoins: Int, completion: (() -> Void)?)
+    func changeUserWinrate(with newWinRate: Int, completion: (() -> Void)?)
     func logOut()
     func deleteAccount()
 }
@@ -142,6 +146,80 @@ final class AuthManager: AuthManagerProtocol {
                 self.isAuth = false
             } else {
                 self.isAuth = true
+            }
+        }
+    }
+    
+    func getUserCoins(completion: ((Int) -> Void)?) {
+        if let uid = Auth.auth().currentUser?.uid {
+            let ref = Database.database().reference().child("users").child(uid)
+            ref.observeSingleEvent(of: .value) { dataSnapshot in
+                guard let userData = dataSnapshot.value as? [String: Any],
+                      let coins = userData["coins"] as? Int else {
+                    completion?(0)
+                    return
+                }
+                completion?(coins)
+            }
+        } else {
+            completion?(0)
+        }
+    }
+    
+    func changeUserCoins(with newCoins: Int, completion: (() -> Void)?) {
+        if isAuth {
+            if let uid = Auth.auth().currentUser?.uid {
+                let ref = Database.database().reference().child("users").child(uid)
+                ref.getData { error, data in
+                    print(data)
+                }
+                ref.updateChildValues(["coins": newCoins]) { (error, _) in
+                    if let error = error {
+                        // Обработка ошибки при обновлении значения
+                        print("ошибка, \(error)")
+                    } else {
+                        // Значение успешно обновлено
+                        print("coins успешно обновлено")
+                        completion?()
+                    }
+                }
+            }
+        }
+    }
+    
+    func getUserWinRate(completion: ((Int) -> Void)?) {
+        if let uid = Auth.auth().currentUser?.uid {
+            let ref = Database.database().reference().child("users").child(uid)
+            ref.observeSingleEvent(of: .value) { dataSnapshot in
+                guard let userData = dataSnapshot.value as? [String: Any],
+                      let winRate = userData["winRate"] as? Int else {
+                    completion?(0)
+                    return
+                }
+                completion?(winRate)
+            }
+        } else {
+            completion?(0)
+        }
+    }
+    
+    func changeUserWinrate(with newWinRate: Int, completion: (() -> Void)?) {
+        if isAuth {
+            if let uid = Auth.auth().currentUser?.uid {
+                let ref = Database.database().reference().child("users").child(uid)
+                ref.getData { error, data in
+                    print(data)
+                }
+                ref.updateChildValues(["winRate": newWinRate]) { (error, _) in
+                    if let error = error {
+                        // Обработка ошибки при обновлении значения
+                        print("ошибка, \(error)")
+                    } else {
+                        // Значение успешно обновлено
+                        print("winRate успешно обновлено")
+                        completion?()
+                    }
+                }
             }
         }
     }

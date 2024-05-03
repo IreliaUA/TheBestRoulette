@@ -39,12 +39,13 @@ final class RatingViewController: UIViewController {
         super.viewDidLoad()
         
         setupUI()
-        presenter.viewDidLoad()
+       // presenter.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
+        presenter.viewDidLoad()
     }
     
     // MARK: - Private Methods
@@ -81,6 +82,9 @@ extension RatingViewController: UITableViewDelegate, UITableViewDataSource {
         
         if let ratingCell = tableView.dequeueReusableCell(withIdentifier: "RatingCell", for: indexPath) as? RatingTableViewCell, let cellModel = data {
             ratingCell.selectionStyle = .none
+            // if Auth.currentUser.name == cellModel.name {
+            // cell.setBorder()
+            //}
             ratingCell.setup(with: cellModel, currentNumber: indexPath.row + 1)
             return ratingCell
         } else {
