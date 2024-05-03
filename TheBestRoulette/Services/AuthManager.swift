@@ -15,7 +15,7 @@ protocol AuthManagerProtocol {
     func register(email: String, pass: String, name: String, completion: ((Bool) -> Void)?)
     func signInAnonymously(completion: ((Bool) -> Void)?)
     func getAllData(completion: (([UserInfo]) -> Void)?)
-    func getUserCoins(completion: ((Int) -> Void)?)
+    func getUserCoins(completion: (((Int, String)) -> Void)?)
     func getUserWinRate(completion: ((Int) -> Void)?)
     func changeUserCoins(with newCoins: Int, completion: (() -> Void)?)
     func changeUserWinrate(with newWinRate: Int, completion: (() -> Void)?)
@@ -150,19 +150,20 @@ final class AuthManager: AuthManagerProtocol {
         }
     }
     
-    func getUserCoins(completion: ((Int) -> Void)?) {
+    func getUserCoins(completion: (((Int, String)) -> Void)?) {
         if let uid = Auth.auth().currentUser?.uid {
             let ref = Database.database().reference().child("users").child(uid)
             ref.observeSingleEvent(of: .value) { dataSnapshot in
                 guard let userData = dataSnapshot.value as? [String: Any],
-                      let coins = userData["coins"] as? Int else {
-                    completion?(0)
+                      let coins = userData["coins"] as? Int,
+                let name = userData["name"] as? String else {
+                    completion?((0, ""))
                     return
                 }
-                completion?(coins)
+                completion?((coins, name))
             }
         } else {
-            completion?(0)
+            completion?((0, ""))
         }
     }
     
@@ -186,6 +187,7 @@ final class AuthManager: AuthManagerProtocol {
             }
         }
     }
+    
     
     func getUserWinRate(completion: ((Int) -> Void)?) {
         if let uid = Auth.auth().currentUser?.uid {

@@ -8,5 +8,6 @@
 
 struct GameViewModel {
     var coins: Int
+    var name: String
 }
 

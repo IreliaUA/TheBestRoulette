@@ -9,13 +9,13 @@
 import UIKit
 
 protocol GameViewModelFactoryProtocol {
-  func makeViewModel(coins: Int) -> GameViewModel
+    func makeViewModel(coins: Int, name: String) -> GameViewModel
 }
 
 final class GameViewModelFactory: GameViewModelFactoryProtocol {
   
-  func makeViewModel(coins: Int) -> GameViewModel {
-      let viewModel: GameViewModel = GameViewModel(coins: coins)
+  func makeViewModel(coins: Int, name: String) -> GameViewModel {
+      let viewModel: GameViewModel = GameViewModel(coins: coins, name: name)
     return viewModel
   }
 }

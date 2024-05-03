@@ -26,7 +26,7 @@ class RatingTableViewCell: UITableViewCell {
     func setup(with model: RatingCellModel, currentNumber: Int) {
         nameLabel.text = model.title
         winRateLabel.text = model.subtitle
-        coinsLabel.text = model.money
+        coinsLabel.text = String(model.money)
         numberRatingLabel.text = "\(currentNumber)"
     }
     

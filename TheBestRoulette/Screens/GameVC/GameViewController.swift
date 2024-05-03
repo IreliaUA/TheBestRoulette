@@ -16,6 +16,7 @@ final class GameViewController: UIViewController {
     
     // MARK: - IBOutlet
     @IBOutlet weak var coinsLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var stepperLabel: UILabel!
     @IBOutlet weak var stepperBet: UIStepper!
     @IBOutlet weak var rouletteSpinView: UIView!
@@ -25,6 +26,7 @@ final class GameViewController: UIViewController {
     // MARK: - Properties
     
     private let presenter: GamePresenterProtocol
+   // var currentBallSpinAngle: CGFloat = Double.pi
     
     // MARK: - Lifecycle
     
@@ -61,16 +63,18 @@ final class GameViewController: UIViewController {
     
     func spinRoulete() {
         UIView.animate(withDuration: 5, delay: 0, options: [.curveEaseOut], animations: {
-            for _ in 0..<7 {
+            for _ in 0..<Int.random(in: 5...7) {
                 self.rouletteSpinView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi * 1))
                 self.rouletteSpinView.transform = CGAffineTransform(rotationAngle: 0)
             }
         })
-        UIView.animate(withDuration: 4, delay: 0, options: [.curveEaseOut], animations: {
-        for _ in 0..<8 {
-            self.ballSpinView.transform = CGAffineTransform(rotationAngle: CGFloat(-Double.pi * -1)) 
-            self.ballSpinView.transform = CGAffineTransform(rotationAngle: 0)
-        }
+        UIView.animate(withDuration: 5.5, delay: 0, options: [.curveEaseOut], animations: {
+            for _ in 0..<Int.random(in: 9...10) {
+//                let randomAngleInRange = Double.random(in: 0...(270 * Double.pi / 180))
+//                let randomAngle = randomAngleInRange + (90 * Double.pi / 180)
+                self.ballSpinView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.random(in: 0...(2 * Double.pi))))
+                self.ballSpinView.transform = CGAffineTransform(rotationAngle: Double.random(in: 0...(2 * Double.pi)))
+            }
         })
     }
     
@@ -100,11 +104,9 @@ final class GameViewController: UIViewController {
 extension GameViewController: GameViewControllerProtocol {
     func setup(with viewModel: GameViewModel) {
         coinsLabel.text = "\(viewModel.coins)"
+        nameLabel.text = viewModel.name
     }
     func updateCoinsLabel(coins: Int) {
         coinsLabel.text = String(coins)
-        //        stepperBet.maximumValue = Double(coins)
-        //        stepperBet.stepValue = Double(coins) / 10
     }
-    
 }

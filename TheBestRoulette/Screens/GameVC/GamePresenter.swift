@@ -23,6 +23,7 @@ final class GamePresenter: GamePresenterProtocol {
     private let viewModelFactory: GameViewModelFactoryProtocol
     private let authManager: AuthManagerProtocol
     var coins: Int = 0
+    var name: String = "User 1"
     
     // MARK: - Initialization
     
@@ -41,20 +42,17 @@ final class GamePresenter: GamePresenterProtocol {
         //        let createdViewModel = viewModelFactory.makeViewModel()
         //        viewModel = createdViewModel
         //        view?.setup(with: createdViewModel)
-        getCoins { coins in
-            if let coins = coins {
-                self.coins = coins
-                let createdViewModel = self.viewModelFactory.makeViewModel(coins: coins)
-                self.viewModel = createdViewModel
-                self.view?.setup(with: createdViewModel)
-            } else {
-                // Handle the case where coins is nil
-            }
+        getCoins { (coins, name) in
+            self.coins = coins
+            let createdViewModel = self.viewModelFactory.makeViewModel(coins: coins, name: name)
+            self.viewModel = createdViewModel
+            self.view?.setup(with: createdViewModel)
         }
     }
-    func getCoins(completion: ((Int?) -> Void)?) {
-        authManager.getUserCoins { coins in
-            completion?(coins)
+    
+    func getCoins(completion: (((Int, String)) -> Void)?) {
+        authManager.getUserCoins { (coins, name) in
+            completion?((coins, name))
         }
     }
     
