@@ -49,13 +49,11 @@ final class LogInPresenter: LogInPresenterProtocol {
     func logIn(email: String, pass: String) {
         authManager.logIn(email: email, pass: pass) { result in
             if result {
-                print("покажи алерт удача")
                 self.view?.showAlert(title: "You have successfully logged into your account")
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                                   self.view?.continueMove()
-                                        }
+                    self.view?.continueMove()
+                }
             } else {
-                print("покажи алерт грусть")
                 self.view?.showAlert(title: "This account doesn't exist", message: "Let's create a new one", okText: "OK")
             }
         }
@@ -64,13 +62,11 @@ final class LogInPresenter: LogInPresenterProtocol {
     func register(email: String, pass: String, name: String) {
         authManager.register(email: email, pass: pass, name: name) { result in
             if result {
-                print("покажи алерт удача")
                 self.view?.showAlert(title: "Account was successfully registered")
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                                   self.view?.continueMove()
-                                        }
+                    self.view?.continueMove()
+                }
             } else {
-                print("покажи алерт грусть")
                 self.view?.showAlert(title: "This account is already exist", message: "Let's log in", okText: "OK")
             }
         }
@@ -79,13 +75,11 @@ final class LogInPresenter: LogInPresenterProtocol {
     func signInAnonymously() {
         authManager.signInAnonymously { result in
             if result {
-                print("покажи алерт удача")
                 self.view?.showAlert(title: "Account was created successfully")
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                                   self.view?.continueMove()
-                                        }
+                    self.view?.continueMove()
+                }
             } else {
-                print("покажи алерт грусть")
             }
         }
     }

@@ -16,6 +16,8 @@ final class RatingViewController: UIViewController {
     // MARK: - IBOutlet
     
     @IBOutlet weak var usersTableView: UITableView!
+    @IBOutlet weak var loadingLabel: UILabel!
+    
     
     // MARK: - Properties
     
@@ -52,6 +54,7 @@ final class RatingViewController: UIViewController {
         usersTableView.register(UINib(nibName: "RatingTableViewCell", bundle: nil), forCellReuseIdentifier: "RatingCell")
         usersTableView.delegate = self
         usersTableView.dataSource = self
+        usersTableView.rowHeight = 107
         
     }
     
@@ -63,6 +66,7 @@ final class RatingViewController: UIViewController {
 
 extension RatingViewController: RatingViewControllerProtocol {
     func setup(with viewModel: RatingViewModel) {
+        loadingLabel.isHidden = true
         usersTableView.reloadData()
     }
 }

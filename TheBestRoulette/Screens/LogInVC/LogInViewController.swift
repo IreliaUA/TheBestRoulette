@@ -76,7 +76,7 @@ final class LogInViewController: UIViewController {
     
     func textFieldSetUp() {
         loginTextField.textColor = UIColor.white
-        let placeholderText = "Enter your email."
+        let placeholderText = "Enter your email..."
         let attributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor(named: "lightGrey") ?? .lightGrey,
             .font: UIFont.systemFont(ofSize: 14)
@@ -84,7 +84,7 @@ final class LogInViewController: UIViewController {
         loginTextField.attributedPlaceholder = NSAttributedString(string: placeholderText, attributes: attributes)
         
         passTextField.textColor = UIColor.white
-        let placeholderTex = "Enter your password."
+        let placeholderTex = "Enter your password..."
         passTextField.attributedPlaceholder = NSAttributedString(string: placeholderTex, attributes: attributes)
         
         nameTexField.textColor = UIColor.white

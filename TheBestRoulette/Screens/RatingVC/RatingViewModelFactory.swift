@@ -20,8 +20,8 @@ final class RatingViewModelFactory: RatingViewModelFactoryProtocol {
         for user in users {
                 let cellModel = RatingCellModel(
                     title: user.name,
-                    subtitle: "Win Rate: \(user.winRate)",
-                    money: "Coins: \(user.coins)"
+                    subtitle: "win rate: \(user.winRate)%",
+                    money: "\(user.coins)"
                 )
                 cellModels.append(cellModel)
         }

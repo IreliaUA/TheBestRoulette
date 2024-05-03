@@ -12,6 +12,7 @@ class RatingTableViewCell: UITableViewCell {
     
     @IBOutlet weak var winRateLabel: UILabel!
     @IBOutlet weak var coinsLabel: UILabel!
+    @IBOutlet weak var numberRatingLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,9 +25,9 @@ class RatingTableViewCell: UITableViewCell {
     
     func setup(with model: RatingCellModel, currentNumber: Int) {
         nameLabel.text = model.title
-        winRateLabel.text = "win rate: \(model.subtitle)%"
+        winRateLabel.text = model.subtitle
         coinsLabel.text = model.money
-        
+        numberRatingLabel.text = "\(currentNumber)"
     }
     
 }

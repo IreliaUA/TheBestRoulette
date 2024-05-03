@@ -15,18 +15,20 @@ protocol GameAssemblyProtocol {
 final class GameAssembly: GameAssemblyProtocol {
     
     private let viewModelFactory: GameViewModelFactoryProtocol
+    private let authManager: AuthManagerProtocol
     
     // MARK: - Initialization
     
-    init(viewModelFactory: GameViewModelFactoryProtocol = GameViewModelFactory()) {
+    init(viewModelFactory: GameViewModelFactoryProtocol = GameViewModelFactory(), authManager: AuthManagerProtocol = AuthManager()) {
         self.viewModelFactory = viewModelFactory
+        self.authManager = authManager
     }
     
     // MARK: - GameAssemblyProtocol
     
     func assemble() -> UIViewController {
         let presenter: GamePresenter = GamePresenter(
-            viewModelFactory: viewModelFactory
+            viewModelFactory: viewModelFactory, authManager: authManager
         )
         
         let viewController: GameViewController = GameViewController(presenter: presenter)

@@ -15,18 +15,20 @@ protocol SettingsAssemblyProtocol {
 final class SettingsAssembly: SettingsAssemblyProtocol {
     
     private let viewModelFactory: SettingsViewModelFactoryProtocol
+    private let authManager: AuthManagerProtocol
     
     // MARK: - Initialization
     
-    init(viewModelFactory: SettingsViewModelFactoryProtocol = SettingsViewModelFactory()) {
+    init(viewModelFactory: SettingsViewModelFactoryProtocol = SettingsViewModelFactory(), authManager: AuthManagerProtocol = AuthManager()) {
         self.viewModelFactory = viewModelFactory
+        self.authManager = authManager
     }
     
     // MARK: - SettingsAssemblyProtocol
     
     func assemble() -> UIViewController {
         let presenter: SettingsPresenter = SettingsPresenter(
-            viewModelFactory: viewModelFactory
+            viewModelFactory: viewModelFactory, authManager: authManager
         )
         
         let viewController: SettingsViewController = SettingsViewController(presenter: presenter)

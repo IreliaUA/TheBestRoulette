@@ -18,13 +18,15 @@ final class GamePresenter: GamePresenterProtocol {
     // Dependencies
     weak var view: GameViewControllerProtocol?
     private let viewModelFactory: GameViewModelFactoryProtocol
+    private let authManager: AuthManagerProtocol
     
     // MARK: - Initialization
     
     init(
-        viewModelFactory: GameViewModelFactoryProtocol
+        viewModelFactory: GameViewModelFactoryProtocol, authManager: AuthManagerProtocol
     ) {
         self.viewModelFactory = viewModelFactory
+        self.authManager = authManager
     }
     
     // MARK: - GamePresenterProtocol

@@ -16,18 +16,20 @@ final class RatingAssembly: RatingAssemblyProtocol {
     
     // Dependencies
     private let viewModelFactory: RatingViewModelFactoryProtocol
+    private let authManager: AuthManagerProtocol
     
     // MARK: - Initialization
     
-    init(viewModelFactory: RatingViewModelFactoryProtocol = RatingViewModelFactory()) {
+    init(viewModelFactory: RatingViewModelFactoryProtocol = RatingViewModelFactory(), authManager: AuthManagerProtocol = AuthManager()) {
         self.viewModelFactory = viewModelFactory
+        self.authManager = authManager
     }
     
     // MARK: - RatingAssemblyProtocol
     
     func assemble() -> UIViewController {
         let presenter: RatingPresenter = RatingPresenter(
-            viewModelFactory: viewModelFactory
+            viewModelFactory: viewModelFactory, authManager: authManager
         )
         
         let viewController: RatingViewController = RatingViewController(presenter: presenter)

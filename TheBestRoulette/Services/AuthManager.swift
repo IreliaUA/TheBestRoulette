@@ -15,11 +15,14 @@ protocol AuthManagerProtocol {
     func register(email: String, pass: String, name: String, completion: ((Bool) -> Void)?)
     func signInAnonymously(completion: ((Bool) -> Void)?)
     func getAllData(completion: (([UserInfo]) -> Void)?)
+    func logOut()
+    func deleteAccount()
 }
 
 final class AuthManager: AuthManagerProtocol {
     
-    static var shared = AuthManager()
+    //static var shared = AuthManager()
+//вместо ститистик прокидывать как в логин
     var isAuth = false
     
     init() {
@@ -80,6 +83,43 @@ final class AuthManager: AuthManagerProtocol {
                 completion?(true)
             }
             
+        }
+    }
+    
+    func logOut() {
+        do { try Auth.auth().signOut() }
+        catch let signOutError as NSError {
+            print("Error signing out: %@", signOutError) }
+    }
+    
+    func deleteAccount() {
+        guard let currentUser = Auth.auth().currentUser else {
+            print(NSError(domain: "AuthError", code: -1, userInfo: ["description": "No current user found"]))
+            return
+        }
+        
+        let uuid = currentUser.uid
+        currentUser.delete { [weak self] error in
+            if let error = error {
+                print("Error deleting account: \(error.localizedDescription)")
+                return
+            }
+            
+            self?.deleteUserFromRealtimeDatabase(uuid: uuid) { error in
+                if let error = error {
+                    print("Error deleting user data from Realtime Database: \(error.localizedDescription)")
+                } else {
+                    print("User data deleted from Realtime Database successfully")
+                }
+            }
+        }
+    }
+
+    func deleteUserFromRealtimeDatabase(uuid: String, completion: @escaping (Error?) -> Void) {
+        let ref = Database.database().reference().child("users").child(uuid) 
+        
+        ref.removeValue { error, _ in
+            completion(error)
         }
     }
     

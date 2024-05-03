@@ -17,13 +17,15 @@ final class RatingPresenter: RatingPresenterProtocol {
     
     weak var view: RatingViewControllerProtocol?
     private let viewModelFactory: RatingViewModelFactoryProtocol
+    private let authManager: AuthManagerProtocol
     
     // MARK: - Initialization
     
     init(
-        viewModelFactory: RatingViewModelFactoryProtocol
+        viewModelFactory: RatingViewModelFactoryProtocol, authManager: AuthManagerProtocol
     ) {
         self.viewModelFactory = viewModelFactory
+        self.authManager = authManager
     }
     
     // MARK: - RatingPresenterProtocol
@@ -39,8 +41,11 @@ final class RatingPresenter: RatingPresenterProtocol {
     }
     
     func getUsers(completion: (([UserInfo]) -> Void)?) {
-        AuthManager.shared.getAllData { users in
-           completion?(users)
+        authManager.getAllData { users in
+            completion?(users)
         }
+//        AuthManager.shared.getAllData { users in
+//           completion?(users)
+//        }
     }
 }
