@@ -129,6 +129,7 @@
                 <outlet property="coinsLabel" destination="cuH-Oh-KNy" id="qpd-Hz-0P1"/>
                 <outlet property="nameLabel" destination="3aS-xU-ATU" id="dBv-q4-gt9"/>
                 <outlet property="numberRatingLabel" destination="Jww-AZ-zoM" id="rI7-hM-jbf"/>
+                <outlet property="userBGView" destination="tGh-6q-dRW" id="dg7-IN-cpo"/>
                 <outlet property="winRateLabel" destination="nj4-wz-HC8" id="fJ1-SZ-dpR"/>
             </connections>
             <point key="canvasLocation" x="100" y="47.535211267605639"/>

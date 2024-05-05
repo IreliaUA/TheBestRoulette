@@ -82,9 +82,6 @@ extension RatingViewController: UITableViewDelegate, UITableViewDataSource {
         
         if let ratingCell = tableView.dequeueReusableCell(withIdentifier: "RatingCell", for: indexPath) as? RatingTableViewCell, let cellModel = data {
             ratingCell.selectionStyle = .none
-            // if Auth.currentUser.name == cellModel.name {
-            // cell.setBorder()
-            //}
             ratingCell.setup(with: cellModel, currentNumber: indexPath.row + 1)
             return ratingCell
         } else {

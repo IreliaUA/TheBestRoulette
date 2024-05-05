@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3903A9282BE6B9FF00EE3178 /* VariantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3903A9262BE6B9FF00EE3178 /* VariantTableViewCell.swift */; };
+		3903A9292BE6B9FF00EE3178 /* VariantTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3903A9272BE6B9FF00EE3178 /* VariantTableViewCell.xib */; };
 		399D13A42BE2E170002E99AF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 399D13A32BE2E170002E99AF /* GoogleService-Info.plist */; };
 		399D13A62BE2F07C002E99AF /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399D13A52BE2F07C002E99AF /* AuthManager.swift */; };
 		399D13AA2BE40D23002E99AF /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399D13A92BE40D23002E99AF /* Alert.swift */; };
@@ -71,9 +73,12 @@
 		39E6EEC32BE026210026E2A8 /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 39E6EEC22BE026210026E2A8 /* FirebaseRemoteConfigSwift */; };
 		39E6EEC52BE026210026E2A8 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 39E6EEC42BE026210026E2A8 /* FirebaseStorage */; };
 		39E6EEC72BE026210026E2A8 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 39E6EEC62BE026210026E2A8 /* FirebaseStorageCombine-Community */; };
+		39ED99EA2BE6F4DF0009FE10 /* NetworkStatusMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39ED99E92BE6F4DF0009FE10 /* NetworkStatusMonitor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3903A9262BE6B9FF00EE3178 /* VariantTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VariantTableViewCell.swift; sourceTree = "<group>"; };
+		3903A9272BE6B9FF00EE3178 /* VariantTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VariantTableViewCell.xib; sourceTree = "<group>"; };
 		399D13A32BE2E170002E99AF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		399D13A52BE2F07C002E99AF /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		399D13A92BE40D23002E99AF /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
@@ -112,6 +117,7 @@
 		39B413902BDEE75C00600AD3 /* Alatsi-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Alatsi-Regular.ttf"; sourceTree = "<group>"; };
 		39C81C0E2BE02B2800D303F6 /* RatingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingTableViewCell.swift; sourceTree = "<group>"; };
 		39C81C0F2BE02B2800D303F6 /* RatingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RatingTableViewCell.xib; sourceTree = "<group>"; };
+		39ED99E92BE6F4DF0009FE10 /* NetworkStatusMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkStatusMonitor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +159,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3903A9252BE6B9EE00EE3178 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				3903A9262BE6B9FF00EE3178 /* VariantTableViewCell.swift */,
+				3903A9272BE6B9FF00EE3178 /* VariantTableViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		39B412F22BDE503E00600AD3 = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +218,7 @@
 				39B413292BDE553100600AD3 /* Extensions.swift */,
 				399D13A92BE40D23002E99AF /* Alert.swift */,
 				399D13AB2BE40DDB002E99AF /* CustomVisualEffect.swift */,
+				39ED99E92BE6F4DF0009FE10 /* NetworkStatusMonitor.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -244,6 +260,7 @@
 		39B413182BDE51B200600AD3 /* GameVC */ = {
 			isa = PBXGroup;
 			children = (
+				3903A9252BE6B9EE00EE3178 /* Cells */,
 				39B413602BDE584A00600AD3 /* GamePresenter.swift */,
 				39B413612BDE584A00600AD3 /* GameViewModel.swift */,
 				39B413622BDE584A00600AD3 /* GameAssembly.swift */,
@@ -370,6 +387,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				39C81C112BE02B2800D303F6 /* RatingTableViewCell.xib in Resources */,
+				3903A9292BE6B9FF00EE3178 /* VariantTableViewCell.xib in Resources */,
 				39B413082BDE504000600AD3 /* Assets.xcassets in Resources */,
 				399D13A42BE2E170002E99AF /* GoogleService-Info.plist in Resources */,
 				39B4134D2BDE570000600AD3 /* RatingViewController.xib in Resources */,
@@ -396,6 +414,7 @@
 				39B413482BDE56BB00600AD3 /* RatingViewModelFactory.swift in Sources */,
 				39B413212BDE51E800600AD3 /* LogInViewModel.swift in Sources */,
 				39B413222BDE51E800600AD3 /* LogInAssembly.swift in Sources */,
+				39ED99EA2BE6F4DF0009FE10 /* NetworkStatusMonitor.swift in Sources */,
 				39B413272BDE520700600AD3 /* LogInViewController.swift in Sources */,
 				39B413232BDE51E800600AD3 /* LogInViewModelFactory.swift in Sources */,
 				39B412FF2BDE503E00600AD3 /* AppDelegate.swift in Sources */,
@@ -405,6 +424,7 @@
 				39B413572BDE577900600AD3 /* SettingsAssembly.swift in Sources */,
 				39B413702BDE589400600AD3 /* GameViewController.swift in Sources */,
 				39B413652BDE584A00600AD3 /* GamePresenter.swift in Sources */,
+				3903A9282BE6B9FF00EE3178 /* VariantTableViewCell.swift in Sources */,
 				39B413662BDE584A00600AD3 /* GameViewModel.swift in Sources */,
 				39B413672BDE584A00600AD3 /* GameAssembly.swift in Sources */,
 				399D13AA2BE40D23002E99AF /* Alert.swift in Sources */,
@@ -563,8 +583,8 @@
 				INFOPLIST_FILE = TheBestRoulette/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -579,7 +599,7 @@
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -595,8 +615,8 @@
 				INFOPLIST_FILE = TheBestRoulette/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -611,7 +631,7 @@
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

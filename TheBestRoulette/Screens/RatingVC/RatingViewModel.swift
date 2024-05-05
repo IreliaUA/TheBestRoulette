@@ -13,5 +13,6 @@ struct RatingViewModel {
 struct RatingCellModel {
     var title: String
     var subtitle: String
-    var money: Int
+    var money: Double
+    var isItMe: Bool
 }

@@ -29,6 +29,7 @@ private extension TabBarController {
         integrateTabBarVC.viewControllers = [instantiateRatingsScreen(), instantiateGameScreen(), instantiateSettingsScreen()]
         
         let appearance = UITabBarAppearance()
+        appearance.backgroundColor = .black
         appearance.stackedLayoutAppearance.normal.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "lightGrey")!]
         appearance.stackedLayoutAppearance.selected.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "lightOrange")!]
         integrateTabBarVC.tabBar.standardAppearance = appearance

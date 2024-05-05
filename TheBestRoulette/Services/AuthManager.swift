@@ -15,10 +15,9 @@ protocol AuthManagerProtocol {
     func register(email: String, pass: String, name: String, completion: ((Bool) -> Void)?)
     func signInAnonymously(completion: ((Bool) -> Void)?)
     func getAllData(completion: (([UserInfo]) -> Void)?)
-    func getUserCoins(completion: (((Int, String)) -> Void)?)
-    func getUserWinRate(completion: ((Int) -> Void)?)
-    func changeUserCoins(with newCoins: Int, completion: (() -> Void)?)
+    func changeUserCoins(with newCoins: Double, completion: (() -> Void)?)
     func changeUserWinrate(with newWinRate: Int, completion: (() -> Void)?)
+    func getCurrentUserData(completion: ((UserInfo?) -> Void)?)
     func logOut()
     func deleteAccount()
 }
@@ -26,7 +25,7 @@ protocol AuthManagerProtocol {
 final class AuthManager: AuthManagerProtocol {
     
     //static var shared = AuthManager()
-//вместо ститистик прокидывать как в логин
+    //вместо ститистик прокидывать как в логин
     var isAuth = false
     
     init() {
@@ -118,9 +117,9 @@ final class AuthManager: AuthManagerProtocol {
             }
         }
     }
-
+    
     func deleteUserFromRealtimeDatabase(uuid: String, completion: @escaping (Error?) -> Void) {
-        let ref = Database.database().reference().child("users").child(uuid) 
+        let ref = Database.database().reference().child("users").child(uuid)
         
         ref.removeValue { error, _ in
             completion(error)
@@ -150,24 +149,7 @@ final class AuthManager: AuthManagerProtocol {
         }
     }
     
-    func getUserCoins(completion: (((Int, String)) -> Void)?) {
-        if let uid = Auth.auth().currentUser?.uid {
-            let ref = Database.database().reference().child("users").child(uid)
-            ref.observeSingleEvent(of: .value) { dataSnapshot in
-                guard let userData = dataSnapshot.value as? [String: Any],
-                      let coins = userData["coins"] as? Int,
-                let name = userData["name"] as? String else {
-                    completion?((0, ""))
-                    return
-                }
-                completion?((coins, name))
-            }
-        } else {
-            completion?((0, ""))
-        }
-    }
-    
-    func changeUserCoins(with newCoins: Int, completion: (() -> Void)?) {
+    func changeUserCoins(with newCoins: Double, completion: (() -> Void)?) {
         if isAuth {
             if let uid = Auth.auth().currentUser?.uid {
                 let ref = Database.database().reference().child("users").child(uid)
@@ -188,20 +170,23 @@ final class AuthManager: AuthManagerProtocol {
         }
     }
     
-    
-    func getUserWinRate(completion: ((Int) -> Void)?) {
+    func getCurrentUserData(completion: ((UserInfo?) -> Void)?) {
         if let uid = Auth.auth().currentUser?.uid {
             let ref = Database.database().reference().child("users").child(uid)
             ref.observeSingleEvent(of: .value) { dataSnapshot in
-                guard let userData = dataSnapshot.value as? [String: Any],
-                      let winRate = userData["winRate"] as? Int else {
-                    completion?(0)
-                    return
+                if let userData = dataSnapshot.value as? [String: Any],
+                   let coins = userData["coins"] as? Double,
+                   let email = userData["email"] as? String,
+                   let name = userData["name"] as? String,
+                   let winRate = userData["winRate"] as? Int {
+                    let user = UserInfo(coins: coins, email: email, name: name, winRate: winRate, isItMe: true)
+                    completion?(user)
+                } else {
+                    completion?(nil)
                 }
-                completion?(winRate)
             }
         } else {
-            completion?(0)
+            completion?(nil)
         }
     }
     
@@ -228,35 +213,51 @@ final class AuthManager: AuthManagerProtocol {
     
     func getAllData(completion: (([UserInfo]) -> Void)?) {
         var users: [UserInfo] = []
-        let ref = Database.database().reference().child("users")
-        ref.getData { error, dataSnapshot in
-            guard let data = dataSnapshot?.value as? [String: Any] else {
-                print("Failed to parse data snapshot")
-                completion?([])
-                return
-            }
-            
-            for (_, userData) in data {
-                guard let userData = userData as? [String: Any],
-                      let coins = userData["coins"] as? Int,
-                      let email = userData["email"] as? String,
-                      let name = userData["name"] as? String,
-                      let winRate = userData["winRate"] as? Int else {
-                    continue
+        let refUsers = Database.database().reference().child("users")
+        
+        if let uid = Auth.auth().currentUser?.uid {
+            let ref = Database.database().reference().child("users").child(uid)
+            ref.getData { error, data in
+                var userName = ""
+                if let userData = data?.value as? [String: Any],
+                   let name = userData["name"] as? String {
+                    userName = name
                 }
                 
-                let user = UserInfo(coins: coins, email: email, name: name, winRate: winRate)
-                users.append(user)
+                refUsers.getData { error, dataSnapshot in
+                    guard let data = dataSnapshot?.value as? [String: Any] else {
+                        print("Failed to parse data snapshot")
+                        completion?([])
+                        return
+                    }
+                    
+                    for (_, userData) in data {
+                        guard let userData = userData as? [String: Any],
+                              let coins = userData["coins"] as? Double,
+                              let email = userData["email"] as? String,
+                              let name = userData["name"] as? String,
+                              let winRate = userData["winRate"] as? Int else {
+                            continue
+                        }
+                        var isItMe: Bool = false
+                        
+                        if userName == name && userName != "Anonym" {
+                            isItMe = true
+                        }
+                        let user = UserInfo(coins: coins, email: email, name: name, winRate: winRate, isItMe: isItMe)
+                        users.append(user)
+                    }
+                    completion?(users)
+                }
             }
-            
-            completion?(users)
         }
     }
 }
 
 struct UserInfo {
-    let coins: Int
+    let coins: Double
     let email: String
     let name: String
     let winRate: Int
+    let isItMe: Bool
 }

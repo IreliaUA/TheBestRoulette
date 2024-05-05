@@ -7,7 +7,8 @@
 //
 
 struct GameViewModel {
-    var coins: Int
+    var coins: Double
     var name: String
+    var variants: [Variant]
 }
 

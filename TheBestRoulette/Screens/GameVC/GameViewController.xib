@@ -12,6 +12,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GameViewController" customModule="TheBestRoulette" customModuleProvider="target">
             <connections>
                 <outlet property="ballSpinView" destination="kXn-q9-4d9" id="sUx-aF-GXQ"/>
+                <outlet property="betTableView" destination="zcQ-rM-dfV" id="380-jo-rAf"/>
+                <outlet property="choosenVariantLabel" destination="NHS-6B-zSB" id="QiO-Jd-zbR"/>
                 <outlet property="coinsLabel" destination="qvW-hm-6PP" id="Ac7-y6-Dtf"/>
                 <outlet property="nameLabel" destination="7YU-ch-xCW" id="4Ei-IZ-P0v"/>
                 <outlet property="rouletteSpinView" destination="ght-IN-0em" id="2NM-y8-Z81"/>
@@ -114,20 +116,31 @@
                             <real key="value" value="2"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                            <color key="value" red="0.40000003579999999" green="0.86666667460000002" blue="0.98431372640000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="value" red="0.40000000000000002" green="0.86666667460000002" blue="0.98431372640000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="xse-5n-SrY">
-                    <rect key="frame" x="226.66666666666666" y="553" width="126.33333333333334" height="55.333333333333371"/>
+                    <rect key="frame" x="218" y="553" width="135" height="55.333333333333371"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Bb-sa-zVO">
-                            <rect key="frame" x="0.0" y="0.0" width="126.33333333333333" height="34.666666666666664"/>
+                            <rect key="frame" x="0.0" y="0.0" width="135" height="34.666666666666664"/>
                             <color key="tintColor" red="0.96078431610000004" green="0.78039217000000005" blue="0.26274511220000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="plain">
                                 <attributedString key="attributedTitle">
-                                    <fragment content="Chose your bet">
+                                    <fragment content="Ch">
+                                        <attributes>
+                                            <font key="NSFont" size="16" name="Alatsi-Regular"/>
+                                            <font key="NSOriginalFont" size="12" name="Helvetica"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="oo">
+                                        <attributes>
+                                            <font key="NSFont" size="16" name="Alatsi-Regular"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="se your bet">
                                         <attributes>
                                             <font key="NSFont" size="16" name="Alatsi-Regular"/>
                                             <font key="NSOriginalFont" size="12" name="Helvetica"/>
@@ -135,13 +148,16 @@
                                     </fragment>
                                 </attributedString>
                             </buttonConfiguration>
+                            <connections>
+                                <action selector="chooseBetAction:" destination="-1" eventType="touchUpInside" id="9w6-pL-tIT"/>
+                            </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NHS-6B-zSB">
-                            <rect key="frame" x="44.666666666666657" y="34.666666666666629" width="37" height="20.666666666666671"/>
+                            <rect key="frame" x="0.33333333333334281" y="34.666666666666629" width="134.66666666666666" height="20.666666666666671"/>
                             <attributedString key="attributedText">
-                                <fragment content="Label">
+                                <fragment content="You haven't any bet">
                                     <attributes>
-                                        <color key="NSColor" red="1" green="0.98186118990612259" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="NSColor" red="1" green="1" blue="0.98817495748299322" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <font key="NSFont" size="16" name="Alatsi-Regular"/>
                                     </attributes>
                                 </fragment>
@@ -154,11 +170,11 @@
                     <rect key="frame" x="40" y="532" width="94" height="97.333333333333371"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JoV-4e-J2N">
-                            <rect key="frame" x="34.666666666666671" y="0.0" width="25" height="20.666666666666668"/>
+                            <rect key="frame" x="19.333333333333332" y="0.0" width="55.333333333333343" height="20.666666666666668"/>
                             <attributedString key="attributedText">
-                                <fragment content="BET">
+                                <fragment content="Amount">
                                     <attributes>
-                                        <color key="NSColor" red="0.97827788112789105" green="0.78559050352585036" blue="0.15687151038571426" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="NSColor" red="0.96078431610000004" green="0.78039217000000005" blue="0.26666668059999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <font key="NSFont" size="16" name="Alatsi-Regular"/>
                                         <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                     </attributes>
@@ -168,10 +184,17 @@
                         </label>
                         <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="bb5-iN-GRY">
                             <rect key="frame" x="0.0" y="32.666666666666629" width="94" height="32"/>
-                            <color key="backgroundColor" name="white"/>
+                            <color key="backgroundColor" name="lightBlack"/>
+                            <color key="tintColor" name="neon"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                     <real key="value" value="12"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                    <color key="value" name="neon"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                    <real key="value" value="1"/>
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                             <connections>
@@ -193,6 +216,10 @@
                         </label>
                     </subviews>
                 </stackView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="zcQ-rM-dfV">
+                    <rect key="frame" x="40" y="123" width="313" height="405"/>
+                    <color key="backgroundColor" name="lightBlack"/>
+                </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="10L-ch-ZaO">
                     <rect key="frame" x="156.66666666666666" y="743" width="80" height="45"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -235,16 +262,20 @@
                 <constraint firstItem="ght-IN-0em" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="40" id="7LI-6a-fW1"/>
                 <constraint firstItem="NuB-uH-6up" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="12" id="9QM-Rd-6dY"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="10L-ch-ZaO" secondAttribute="bottom" constant="30" id="E9L-xO-rOz"/>
+                <constraint firstItem="zcQ-rM-dfV" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="G44-77-96D"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="xse-5n-SrY" secondAttribute="trailing" constant="40" id="H7p-oR-iti"/>
+                <constraint firstItem="SLL-dr-XAl" firstAttribute="top" secondItem="zcQ-rM-dfV" secondAttribute="bottom" constant="4" id="IXO-bg-Afe"/>
                 <constraint firstItem="kXn-q9-4d9" firstAttribute="top" secondItem="NuB-uH-6up" secondAttribute="bottom" constant="60" id="Jxb-7D-5l7"/>
                 <constraint firstItem="xse-5n-SrY" firstAttribute="centerY" secondItem="SLL-dr-XAl" secondAttribute="centerY" id="WeY-EH-0h7"/>
                 <constraint firstItem="kXn-q9-4d9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="ZhZ-ee-eU6"/>
                 <constraint firstItem="SLL-dr-XAl" firstAttribute="top" secondItem="kXn-q9-4d9" secondAttribute="bottom" constant="20" id="de2-F2-8W4"/>
                 <constraint firstItem="kXn-q9-4d9" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="fXO-oH-Qi4"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="zcQ-rM-dfV" secondAttribute="trailing" constant="40" id="gFq-TE-mOo"/>
                 <constraint firstItem="ght-IN-0em" firstAttribute="top" secondItem="NuB-uH-6up" secondAttribute="bottom" constant="60" id="gVn-yJ-srV"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="NuB-uH-6up" secondAttribute="trailing" constant="30" id="nuI-JK-RFR"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ght-IN-0em" secondAttribute="trailing" constant="40" id="pof-66-a7Y"/>
                 <constraint firstItem="10L-ch-ZaO" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="q2G-CP-soy"/>
+                <constraint firstItem="zcQ-rM-dfV" firstAttribute="top" secondItem="NuB-uH-6up" secondAttribute="bottom" constant="4" id="uo1-Dv-94r"/>
                 <constraint firstItem="SLL-dr-XAl" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="40" id="wmJ-lh-gKJ"/>
                 <constraint firstItem="NuB-uH-6up" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="xBy-Jc-vrT"/>
                 <constraint firstItem="ght-IN-0em" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="yJ0-Kz-0iY"/>
@@ -261,6 +292,9 @@
         </namedColor>
         <namedColor name="lightBlack">
             <color red="0.1803921568627451" green="0.17254901960784313" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="neon">
+            <color red="0.40000000000000002" green="0.8666666666666667" blue="0.98431372549019602" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="white">
             <color red="0.99607843137254903" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
