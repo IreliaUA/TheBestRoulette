@@ -13,7 +13,6 @@ protocol GamePresenterProtocol {
     var viewModel: GameViewModel? { get }
     func addCoinsIfNeed(completion: (() -> Void)?)
     func play(bet: Double, userVariant: Variant)
-    func loose(bet: Double)
     var coins: Double { get }
 }
 
@@ -156,14 +155,16 @@ final class GamePresenter: GamePresenterProtocol {
         if coins != 0 {
             coins -= bet
         }
+        self.view?.resultOfPlay(result: "Try again!", isWin: "You loose")
         changeUserCoins(newCoins: coins)
-        addCoinsIfNeed(completion: nil)
+//        addCoinsIfNeed(completion: nil)
     }
     
     func win(bet: Double) {
         if coins != 0 {
             coins += bet
         }
+        self.view?.resultOfPlay(result: "\(coins)", isWin: "You win!")
        // view.showWin(coins)
         changeUserCoins(newCoins: coins)
     }
@@ -172,6 +173,7 @@ final class GamePresenter: GamePresenterProtocol {
         if coins < 100 {
             coins += 100
             changeUserCoins(newCoins: coins, completion: completion)
+            self.view?.showAlert(title: "Your balance is less than 100 so keep some more coins!", okText: "Ok")
         } else {
             completion?()
         }

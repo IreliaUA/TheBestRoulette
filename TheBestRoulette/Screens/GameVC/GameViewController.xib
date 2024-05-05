@@ -13,13 +13,19 @@
             <connections>
                 <outlet property="ballSpinView" destination="kXn-q9-4d9" id="sUx-aF-GXQ"/>
                 <outlet property="betTableView" destination="zcQ-rM-dfV" id="380-jo-rAf"/>
+                <outlet property="chooseBetButton" destination="1Bb-sa-zVO" id="vpd-Yd-CeV"/>
                 <outlet property="choosenVariantLabel" destination="NHS-6B-zSB" id="QiO-Jd-zbR"/>
+                <outlet property="closeWinLooseButton" destination="ceF-wT-vGJ" id="MuC-hu-38e"/>
                 <outlet property="coinsLabel" destination="qvW-hm-6PP" id="Ac7-y6-Dtf"/>
+                <outlet property="howManyLabel" destination="zuR-eB-C9U" id="c3e-Hz-U8U"/>
                 <outlet property="nameLabel" destination="7YU-ch-xCW" id="4Ei-IZ-P0v"/>
+                <outlet property="playButton" destination="10L-ch-ZaO" id="OgU-WF-bpD"/>
                 <outlet property="rouletteSpinView" destination="ght-IN-0em" id="2NM-y8-Z81"/>
                 <outlet property="stepperBet" destination="bb5-iN-GRY" id="fEU-0h-F7G"/>
                 <outlet property="stepperLabel" destination="FEk-Ww-Ggi" id="wwm-kM-ugn"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="winLooseView" destination="XWt-7v-5QJ" id="NKv-72-2ac"/>
+                <outlet property="youWinLooseLabel" destination="R4X-HJ-Jei" id="V2L-R3-eJp"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -202,9 +208,9 @@
                             </connections>
                         </stepper>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FEk-Ww-Ggi">
-                            <rect key="frame" x="28.666666666666671" y="76.666666666666629" width="37" height="20.666666666666671"/>
+                            <rect key="frame" x="42.333333333333329" y="76.666666666666629" width="9.3333333333333357" height="20.666666666666671"/>
                             <attributedString key="attributedText">
-                                <fragment content="Label">
+                                <fragment content="0">
                                     <attributes>
                                         <color key="NSColor" red="0.96078431610000004" green="0.78039217000000005" blue="0.26274511220000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <font key="NSFont" size="16" name="Alatsi-Regular"/>
@@ -254,6 +260,85 @@
                         <action selector="temp:" destination="-1" eventType="touchUpInside" id="sHc-DJ-biK"/>
                     </connections>
                 </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XWt-7v-5QJ">
+                    <rect key="frame" x="40" y="351" width="313" height="150"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="lZG-WG-aK8">
+                            <rect key="frame" x="16" y="16.000000000000004" width="281" height="61.333333333333343"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R4X-HJ-Jei">
+                                    <rect key="frame" x="0.0" y="0.0" width="281" height="20.666666666666668"/>
+                                    <attributedString key="attributedText">
+                                        <fragment content="Label">
+                                            <attributes>
+                                                <color key="NSColor" red="0.96078431372549022" green="0.7803921568627451" blue="0.2627450980392157" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <font key="NSFont" size="16" name="Alatsi-Regular"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zuR-eB-C9U">
+                                    <rect key="frame" x="0.0" y="40.666666666666686" width="281" height="20.666666666666671"/>
+                                    <attributedString key="attributedText">
+                                        <fragment content="Label">
+                                            <attributes>
+                                                <color key="NSColor" red="0.96078431372549022" green="0.7803921568627451" blue="0.2627450980392157" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <font key="NSFont" size="16" name="Alatsi-Regular"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ceF-wT-vGJ">
+                            <rect key="frame" x="96" y="96.666666666666686" width="121" height="37.333333333333343"/>
+                            <color key="tintColor" name="neon"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain">
+                                <attributedString key="attributedTitle">
+                                    <fragment content="Press to play">
+                                        <attributes>
+                                            <font key="NSFont" size="18" name="Alatsi-Regular"/>
+                                            <font key="NSOriginalFont" size="12" name="Helvetica"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                            </buttonConfiguration>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                    <color key="value" name="neon"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                    <real key="value" value="2"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="12"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="closeWinLooseButtonAction:" destination="-1" eventType="touchUpInside" id="YaT-c3-619"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" name="lightBlack"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="150" id="JWw-sd-Rys"/>
+                        <constraint firstItem="ceF-wT-vGJ" firstAttribute="centerX" secondItem="XWt-7v-5QJ" secondAttribute="centerX" id="lkK-ZZ-wd7"/>
+                        <constraint firstAttribute="trailing" secondItem="lZG-WG-aK8" secondAttribute="trailing" constant="16" id="seu-iM-TrO"/>
+                        <constraint firstAttribute="bottom" secondItem="ceF-wT-vGJ" secondAttribute="bottom" constant="16" id="uII-Ch-wqi"/>
+                        <constraint firstItem="lZG-WG-aK8" firstAttribute="top" secondItem="XWt-7v-5QJ" secondAttribute="top" constant="16" id="xeU-C6-ODA"/>
+                        <constraint firstItem="lZG-WG-aK8" firstAttribute="leading" secondItem="XWt-7v-5QJ" secondAttribute="leading" constant="16" id="yn5-OH-E03"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="18"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" name="black"/>
@@ -266,19 +351,23 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="xse-5n-SrY" secondAttribute="trailing" constant="40" id="H7p-oR-iti"/>
                 <constraint firstItem="SLL-dr-XAl" firstAttribute="top" secondItem="zcQ-rM-dfV" secondAttribute="bottom" constant="4" id="IXO-bg-Afe"/>
                 <constraint firstItem="kXn-q9-4d9" firstAttribute="top" secondItem="NuB-uH-6up" secondAttribute="bottom" constant="60" id="Jxb-7D-5l7"/>
+                <constraint firstItem="XWt-7v-5QJ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="PG8-2l-vOA"/>
                 <constraint firstItem="xse-5n-SrY" firstAttribute="centerY" secondItem="SLL-dr-XAl" secondAttribute="centerY" id="WeY-EH-0h7"/>
                 <constraint firstItem="kXn-q9-4d9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="ZhZ-ee-eU6"/>
+                <constraint firstItem="XWt-7v-5QJ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="40" id="dRS-br-bIs"/>
                 <constraint firstItem="SLL-dr-XAl" firstAttribute="top" secondItem="kXn-q9-4d9" secondAttribute="bottom" constant="20" id="de2-F2-8W4"/>
                 <constraint firstItem="kXn-q9-4d9" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="fXO-oH-Qi4"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="zcQ-rM-dfV" secondAttribute="trailing" constant="40" id="gFq-TE-mOo"/>
                 <constraint firstItem="ght-IN-0em" firstAttribute="top" secondItem="NuB-uH-6up" secondAttribute="bottom" constant="60" id="gVn-yJ-srV"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="NuB-uH-6up" secondAttribute="trailing" constant="30" id="nuI-JK-RFR"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="XWt-7v-5QJ" secondAttribute="trailing" constant="40" id="p5h-bg-UW9"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ght-IN-0em" secondAttribute="trailing" constant="40" id="pof-66-a7Y"/>
                 <constraint firstItem="10L-ch-ZaO" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="q2G-CP-soy"/>
                 <constraint firstItem="zcQ-rM-dfV" firstAttribute="top" secondItem="NuB-uH-6up" secondAttribute="bottom" constant="4" id="uo1-Dv-94r"/>
                 <constraint firstItem="SLL-dr-XAl" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="40" id="wmJ-lh-gKJ"/>
                 <constraint firstItem="NuB-uH-6up" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="xBy-Jc-vrT"/>
                 <constraint firstItem="ght-IN-0em" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="yJ0-Kz-0iY"/>
+                <constraint firstItem="XWt-7v-5QJ" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="zp5-Ui-hXS"/>
             </constraints>
             <point key="canvasLocation" x="35.877862595419849" y="19.718309859154932"/>
         </view>

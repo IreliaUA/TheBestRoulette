@@ -7,9 +7,10 @@
 
 import UIKit
 
-protocol GameViewControllerProtocol: AnyObject {
+protocol GameViewControllerProtocol: UIViewController {
     func setup(with: GameViewModel)
     func updateCoinsLabel(coins: Double)
+    func resultOfPlay(result: String, isWin: String)
 }
 
 final class GameViewController: UIViewController {
@@ -25,12 +26,19 @@ final class GameViewController: UIViewController {
     @IBOutlet weak var betTableView: UITableView!
     @IBOutlet weak var choosenVariantLabel: UILabel!
     
+    @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var chooseBetButton: UIButton!
     
+    
+    @IBOutlet weak var winLooseView: UIView!
+    @IBOutlet weak var youWinLooseLabel: UILabel!
+    @IBOutlet weak var howManyLabel: UILabel!
+    @IBOutlet weak var closeWinLooseButton: UIButton!
     // MARK: - Properties
     
     private let presenter: GamePresenterProtocol
     var bet: Double = 0
-    var choosenVariat: Variant = Variant(number: "", colour: .black, coef: 0, variantType: .color)
+    var choosenVariat: Variant? = nil
     var isTableViewVisible = false
    // var currentBallSpinAngle: CGFloat = Double.pi
     
@@ -52,6 +60,7 @@ final class GameViewController: UIViewController {
         setupUI()
         presenter.viewDidLoad()
         betTableView.isHidden = true
+        winLooseView.isHidden = true
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -88,7 +97,14 @@ final class GameViewController: UIViewController {
         bet = Double(cappedValue)
     }
     
-    func spinRoulete() {
+    func resultOfPlay(result: String, isWin: String) {
+        winLooseView.isHidden.toggle()
+        howManyLabel.text = "\(result)"
+        youWinLooseLabel.text = "\(isWin)"
+    }
+    
+    func spinRoulete(variant: Variant) {
+        
         UIView.animate(withDuration: 5, delay: 0, options: [.curveEaseOut], animations: {
             for _ in 0..<Int.random(in: 5...7) {
                 self.rouletteSpinView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi * 1))
@@ -102,7 +118,7 @@ final class GameViewController: UIViewController {
                 self.ballSpinView.transform = CGAffineTransform(rotationAngle: Double.random(in: 0...(2 * Double.pi)))
             }
         } completion: { istrrue in
-            self.presenter.play(bet: self.bet, userVariant: self.choosenVariat)
+            self.presenter.play(bet: self.bet, userVariant: variant)
             self.refreshStepper()
         }
     }
@@ -110,12 +126,31 @@ final class GameViewController: UIViewController {
     // MARK: - IBActions
     
     @IBAction func temp(_ sender: Any) {
-        //presenter.loose(bet: bet)
-       // presenter.win(bet: bet)
-        if presenter.coins >= bet {
-            spinRoulete()
-        }
         
+        if self.bet <= 0.0 || self.choosenVariat == nil {
+            showAlert(title: "Choose your bet", okText: "ok")
+        } else {
+            if presenter.coins >= bet, let choosenVariat {
+                chooseBetButton.isUserInteractionEnabled = false
+                playButton.isUserInteractionEnabled = false
+                stepperBet.isUserInteractionEnabled = false
+                spinRoulete(variant: choosenVariat)
+            }
+        }
+//        
+//        if presenter.coins >= bet {
+//            spinRoulete()
+//        }
+        
+    }
+    
+    @IBAction func closeWinLooseButtonAction(_ sender: UIButton) {
+        winLooseView.isHidden = true
+        presenter.addCoinsIfNeed(completion: nil)
+        
+        self.chooseBetButton.isUserInteractionEnabled = true
+        self.playButton.isUserInteractionEnabled = true
+        self.stepperBet.isUserInteractionEnabled = true
     }
     
     @IBAction func stepperBetAction(_ sender: UIStepper) {
@@ -133,18 +168,6 @@ final class GameViewController: UIViewController {
     
     @IBAction func chooseBetAction(_ sender: UIButton) {
         self.betTableView.isHidden.toggle()
-//        isTableViewVisible.toggle()
-//        if isTableViewVisible {
-//                   self.betTableView.isHidden = false
-//                self.betTableView.isUserInteractionEnabled = true
-//        } else {
-//    
-//                self.betTableView.isHidden = true
-//                self.betTableView.isUserInteractionEnabled = false
-//        }
-//        UIView.animate(withDuration: 0.2) {
-//                self.betTableView.alpha = self.isTableViewVisible ? 1.0 : 0.0
-//            }
     }
 }
 
