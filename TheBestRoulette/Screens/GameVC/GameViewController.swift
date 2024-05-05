@@ -11,6 +11,7 @@ protocol GameViewControllerProtocol: UIViewController {
     func setup(with: GameViewModel)
     func updateCoinsLabel(coins: Double)
     func resultOfPlay(result: String, isWin: String)
+    func refreshStepper()
 }
 
 final class GameViewController: UIViewController {
@@ -22,25 +23,21 @@ final class GameViewController: UIViewController {
     @IBOutlet weak var stepperBet: UIStepper!
     @IBOutlet weak var rouletteSpinView: UIView!
     @IBOutlet weak var ballSpinView: UIView!
-    
     @IBOutlet weak var betTableView: UITableView!
     @IBOutlet weak var choosenVariantLabel: UILabel!
-    
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var chooseBetButton: UIButton!
-    
-    
     @IBOutlet weak var winLooseView: UIView!
     @IBOutlet weak var youWinLooseLabel: UILabel!
     @IBOutlet weak var howManyLabel: UILabel!
     @IBOutlet weak var closeWinLooseButton: UIButton!
+    @IBOutlet weak var winLooseBlureView: UIVisualEffectView!
     // MARK: - Properties
     
     private let presenter: GamePresenterProtocol
     var bet: Double = 0
     var choosenVariat: Variant? = nil
     var isTableViewVisible = false
-   // var currentBallSpinAngle: CGFloat = Double.pi
     
     // MARK: - Lifecycle
     
@@ -61,16 +58,13 @@ final class GameViewController: UIViewController {
         presenter.viewDidLoad()
         betTableView.isHidden = true
         winLooseView.isHidden = true
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    //    presenter.addCoinsIfNeed(completion: <#(() -> Void)?#>)
+        winLooseBlureView.isHidden = true
     }
     
     // MARK: - Private Methods
     
     private func setupUI() {
-        
+        self.navigationController?.isNavigationBarHidden = true
         betTableView.separatorColor = .clear
         betTableView.register(UINib(nibName: "VariantTableViewCell", bundle: nil), forCellReuseIdentifier: "VariantCell")
         betTableView.delegate = self
@@ -79,13 +73,12 @@ final class GameViewController: UIViewController {
         betTableView.contentInset = .init(top: 0, left: 0, bottom: 16, right: 0)
         
         let plusImage = UIImage(systemName: "plus.circle.fill")
-                stepperBet.setIncrementImage(plusImage, for: .normal)
+        stepperBet.setIncrementImage(plusImage, for: .normal)
         stepperBet.tintColor = UIColor(named: "neon")
-                
+        
         let minusImage = UIImage(systemName: "minus.circle.fill")
         stepperBet.setDecrementImage(minusImage, for: .normal)
         stepperBet.tintColor = UIColor(named: "neon")
-        
     }
     
     func refreshStepper() {
@@ -99,6 +92,7 @@ final class GameViewController: UIViewController {
     
     func resultOfPlay(result: String, isWin: String) {
         winLooseView.isHidden.toggle()
+        winLooseBlureView.isHidden.toggle()
         howManyLabel.text = "\(result)"
         youWinLooseLabel.text = "\(isWin)"
     }
@@ -137,15 +131,11 @@ final class GameViewController: UIViewController {
                 spinRoulete(variant: choosenVariat)
             }
         }
-//        
-//        if presenter.coins >= bet {
-//            spinRoulete()
-//        }
-        
     }
     
     @IBAction func closeWinLooseButtonAction(_ sender: UIButton) {
         winLooseView.isHidden = true
+        winLooseBlureView.isHidden = true
         presenter.addCoinsIfNeed(completion: nil)
         
         self.chooseBetButton.isUserInteractionEnabled = true
@@ -168,6 +158,7 @@ final class GameViewController: UIViewController {
     
     @IBAction func chooseBetAction(_ sender: UIButton) {
         self.betTableView.isHidden.toggle()
+        
     }
 }
 
@@ -179,11 +170,8 @@ extension GameViewController: GameViewControllerProtocol {
         nameLabel.text = viewModel.name
         betTableView.reloadData()
         let coins = viewModel.coins
-        //stepperBet.minimumValue = coins < 10 ? 0 : coins / 10
-       // stepperBet.minimumValue = Double(coins < 10 ? 0 : coins / 10)
         stepperBet.minimumValue = Double(0)
         stepperLabel.text = "\(stepperBet.value)"
-//        menu.items = viewModel.variants
     }
     func updateCoinsLabel(coins: Double) {
         coinsLabel.text = String(coins)
@@ -203,8 +191,6 @@ extension GameViewController: UITableViewDelegate, UITableViewDataSource {
             variantCell.selectionStyle = .none
             variantCell.setup(with: cellModel)
             variantCell.selectCompletion = {
-//                self.betTableView.isHidden = true
-//                self.betTableView.isUserInteractionEnabled = false
                 self.betTableView.isHidden.toggle()
                 
                 self.choosenVariat = cellModel

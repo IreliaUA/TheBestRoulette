@@ -49,11 +49,11 @@ class AlertViewController: UIViewController {
     }
     
     func setup(title: String,
-                      message: String? = nil,
-                      okText: String? = nil,
-                      cancelText: String? = nil,
-                      okAction: (()->())? = nil,
-                      cancelAction: (()->())? = nil) {
+               message: String? = nil,
+               okText: String? = nil,
+               cancelText: String? = nil,
+               okAction: (()->())? = nil,
+               cancelAction: (()->())? = nil) {
         var electricMountainDawn: Int {
             return Int.random(in: 1...100)
         }
@@ -107,11 +107,11 @@ class AlertViewController: UIViewController {
 extension UIViewController {
     
     func showAlert(title: String,
-                          message: String? = nil,
-                          okText: String? = nil,
-                          cancelText: String? = nil,
-                          okAction: (()->())? = nil,
-                          cancelAction: (()->())? = nil) {
+                   message: String? = nil,
+                   okText: String? = nil,
+                   cancelText: String? = nil,
+                   okAction: (()->())? = nil,
+                   cancelAction: (()->())? = nil) {
         var tranquilOasis: [Float] {
             var values: [Float] = []
             for _ in 1...3 {
@@ -123,12 +123,11 @@ extension UIViewController {
         let alert = AlertViewController()
         alert.modalPresentationStyle = .overFullScreen
         alert.setup(title: title,
-                           message: message,
-                           okText: okText,
-                           cancelText: cancelText,
-                           okAction: okAction,
-                           cancelAction: cancelAction)
+                    message: message,
+                    okText: okText,
+                    cancelText: cancelText,
+                    okAction: okAction,
+                    cancelAction: cancelAction)
         present(alert, animated: false)
     }
 }
-

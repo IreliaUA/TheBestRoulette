@@ -15,20 +15,22 @@ class VariantTableViewCell: UITableViewCell {
     @IBOutlet weak var cilorView: UIView!
     
     var selectCompletion: (() -> Void)?
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     func setup(with model: Variant) {
-        numberLabel.text = "\(model.number)"
+        if let numberAsInt = Int(model.number) {
+            numberLabel.text = "Number: \(model.number)"
+        } else {
+            numberLabel.text = "\(model.number)"
+        }
+        
         if let colour = model.colour {
             cilorView.isHidden = false
             colorLabel.isHidden = false
@@ -45,9 +47,7 @@ class VariantTableViewCell: UITableViewCell {
         }
         
     }
-   
-    
-//    IBACTion func chooseButton() {
+ 
     @IBAction func choseThisBet(_ sender: UIButton) {
         selectCompletion?()
     }

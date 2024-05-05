@@ -40,9 +40,6 @@ final class GamePresenter: GamePresenterProtocol {
     var viewModel: GameViewModel?
     
     func viewDidLoad() {
-        //        let createdViewModel = viewModelFactory.makeViewModel()
-        //        viewModel = createdViewModel
-        //        view?.setup(with: createdViewModel)
         getCoins { (coins, name) in
             self.coins = coins
             let createdViewModel = self.viewModelFactory.makeViewModel(coins: coins, name: name)
@@ -67,16 +64,13 @@ final class GamePresenter: GamePresenterProtocol {
         }
         addCoinsIfNeed {
             var customVariants: [Variant] = viewModelNew.variants
-            customVariants.removeLast()
-            customVariants.removeLast()
-            customVariants.removeLast()
-            customVariants.removeLast()
-            customVariants.removeLast()
-            customVariants.removeLast()
-            //TODO
+            let elementsToRemove = 6
+            
+            if customVariants.count >= elementsToRemove {
+                customVariants.removeLast(elementsToRemove)
+            }
+            
             if let randomElement = customVariants.randomElement() {
-                //                self.viewModel?.variants.randomElement()
-                
                 print("Random variant = \(randomElement)")
                 print("User variant = \(userVariant)")
                 switch userVariant.variantType {
@@ -117,7 +111,6 @@ final class GamePresenter: GamePresenterProtocol {
                             self.loose(bet: bet)
                         }
                     }
-                    
                 case .color:
                     if let userColor = userVariant.colour,
                        let randomColor = randomElement.colour {
@@ -130,21 +123,6 @@ final class GamePresenter: GamePresenterProtocol {
                         self.loose(bet: bet)
                     }
                 }
-                
-                //                if userVariant.number == nil {
-                //                    if userVariant.colour == randomElement.colour {
-                //                        self.win(bet: bet * randomElement.coef)
-                //                    } else {
-                //                        self.loose(bet: bet)
-                //                    }
-                //                } else {
-                //                    if userVariant.number == randomElement.number {
-                //                        self.win(bet: bet * randomElement.coef)
-                //                    } else {
-                //                        self.loose(bet: bet)
-                //                    }
-                //                }
-                
             } else {
                 print("error with view model")
             }
@@ -155,32 +133,33 @@ final class GamePresenter: GamePresenterProtocol {
         if coins != 0 {
             coins -= bet
         }
-        self.view?.resultOfPlay(result: "Try again!", isWin: "You loose")
-        changeUserCoins(newCoins: coins)
-//        addCoinsIfNeed(completion: nil)
+        self.view?.resultOfPlay(result: "Try again!", isWin: "Better luck next time!")
+        changeUserCoins(newCoins: coins, winRate: .loose)
     }
     
     func win(bet: Double) {
         if coins != 0 {
             coins += bet
         }
-        self.view?.resultOfPlay(result: "\(coins)", isWin: "You win!")
-       // view.showWin(coins)
-        changeUserCoins(newCoins: coins)
+        self.view?.resultOfPlay(result: "+ \(bet) coins", isWin: "You win!")
+        changeUserCoins(newCoins: coins, winRate: .win)
     }
     
     func addCoinsIfNeed(completion: (() -> Void)?) {
         if coins < 100 {
             coins += 100
-            changeUserCoins(newCoins: coins, completion: completion)
-            self.view?.showAlert(title: "Your balance is less than 100 so keep some more coins!", okText: "Ok")
+            changeUserCoins(newCoins: coins, winRate: .all, completion: completion)
+            self.view?.showAlert(title: "Your balance is less than 100 so keep some more coins!", okText: "Ok", okAction: {
+                self.view?.refreshStepper()
+            })
+            
         } else {
             completion?()
         }
     }
     
-    func changeUserCoins(newCoins: Double, completion: (() -> Void)? = nil) {
-        authManager.changeUserCoins(with: newCoins) {
+    func changeUserCoins(newCoins: Double, winRate: WinRate, completion: (() -> Void)? = nil) {
+        authManager.changeUserCoins(with: newCoins, winRate: winRate) {
             self.view?.updateCoinsLabel(coins: newCoins)
             completion?()
         }
@@ -204,3 +183,6 @@ enum VariantType {
     case rangeVariant((ClosedRange<Int>)), even, odd, number, color
 }
 
+enum WinRate {
+    case win, loose, all
+}

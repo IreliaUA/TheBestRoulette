@@ -15,7 +15,7 @@ protocol AuthManagerProtocol {
     func register(email: String, pass: String, name: String, completion: ((Bool) -> Void)?)
     func signInAnonymously(completion: ((Bool) -> Void)?)
     func getAllData(completion: (([UserInfo]) -> Void)?)
-    func changeUserCoins(with newCoins: Double, completion: (() -> Void)?)
+    func changeUserCoins(with newCoins: Double, winRate: WinRate, completion: (() -> Void)?)
     func changeUserWinrate(with newWinRate: Int, completion: (() -> Void)?)
     func getCurrentUserData(completion: ((UserInfo?) -> Void)?)
     func logOut()
@@ -24,8 +24,6 @@ protocol AuthManagerProtocol {
 
 final class AuthManager: AuthManagerProtocol {
     
-    //static var shared = AuthManager()
-    //вместо ститистик прокидывать как в логин
     var isAuth = false
     
     init() {
@@ -53,7 +51,8 @@ final class AuthManager: AuthManagerProtocol {
                     ref.child(uid).updateChildValues([
                         "name" : name,
                         "email" : email,
-                        "winRate": 0,
+                        "win": 0,
+                        "loose": 0,
                         "coins": 2000
                     ])
                     completion?(true)
@@ -79,7 +78,8 @@ final class AuthManager: AuthManagerProtocol {
                 ref.child(uid).updateChildValues([
                     "name" : "Anonym",
                     "email" : UUID().uuidString,
-                    "winRate": 0,
+                    "win": 0,
+                    "loose": 0,
                     "coins": 2000
                 ])
                 print("anon created success")
@@ -130,6 +130,8 @@ final class AuthManager: AuthManagerProtocol {
         let userData: [String: Any] = [
             "uuid": uuid,
             "winRate": 0,
+            "win": 0,
+            "loose": 0,
             "coins": 2000
         ]
         
@@ -149,21 +151,39 @@ final class AuthManager: AuthManagerProtocol {
         }
     }
     
-    func changeUserCoins(with newCoins: Double, completion: (() -> Void)?) {
+    func changeUserCoins(with newCoins: Double, winRate: WinRate, completion: (() -> Void)?) {
         if isAuth {
             if let uid = Auth.auth().currentUser?.uid {
                 let ref = Database.database().reference().child("users").child(uid)
                 ref.getData { error, data in
-                    print(data)
-                }
-                ref.updateChildValues(["coins": newCoins]) { (error, _) in
-                    if let error = error {
-                        // Обработка ошибки при обновлении значения
-                        print("ошибка, \(error)")
-                    } else {
-                        // Значение успешно обновлено
-                        print("coins успешно обновлено")
-                        completion?()
+                    var looseCount = 0
+                    var winCount = 0
+                    
+                    if let userData = data?.value as? [String: Any],
+                       let win = userData["win"] as? Int,
+                       let loose = userData["loose"] as? Int {
+                        looseCount = loose
+                        winCount = win
+                        var newLooseCount = loose + 1
+                        var newWinCount = win + 1
+                        var parametersToChange: [AnyHashable: Any] = ["coins": newCoins]
+                        switch winRate {
+                        case .win:
+                            parametersToChange["win"] = newWinCount
+                        case .loose:
+                            parametersToChange["loose"] = newLooseCount
+                        case .all:
+                            parametersToChange["win"] = newWinCount
+                            parametersToChange["loose"] = newLooseCount
+                        }
+                        ref.updateChildValues(parametersToChange) { (error, _) in
+                            if let error = error {
+                                print("ошибка, \(error)")
+                            } else {
+                                print("coins успешно обновлено")
+                                completion?()
+                            }
+                        }
                     }
                 }
             }
@@ -178,8 +198,9 @@ final class AuthManager: AuthManagerProtocol {
                    let coins = userData["coins"] as? Double,
                    let email = userData["email"] as? String,
                    let name = userData["name"] as? String,
-                   let winRate = userData["winRate"] as? Int {
-                    let user = UserInfo(coins: coins, email: email, name: name, winRate: winRate, isItMe: true)
+                   let win = userData["win"] as? Int,
+                   let loose = userData["loose"] as? Int {
+                    let user = UserInfo(coins: coins, email: email, name: name, win: win, loose: loose, isItMe: true)
                     completion?(user)
                 } else {
                     completion?(nil)
@@ -199,10 +220,8 @@ final class AuthManager: AuthManagerProtocol {
                 }
                 ref.updateChildValues(["winRate": newWinRate]) { (error, _) in
                     if let error = error {
-                        // Обработка ошибки при обновлении значения
                         print("ошибка, \(error)")
                     } else {
-                        // Значение успешно обновлено
                         print("winRate успешно обновлено")
                         completion?()
                     }
@@ -236,7 +255,8 @@ final class AuthManager: AuthManagerProtocol {
                               let coins = userData["coins"] as? Double,
                               let email = userData["email"] as? String,
                               let name = userData["name"] as? String,
-                              let winRate = userData["winRate"] as? Int else {
+                              let win = userData["win"] as? Int,
+                              let loose = userData["loose"] as? Int else {
                             continue
                         }
                         var isItMe: Bool = false
@@ -244,7 +264,7 @@ final class AuthManager: AuthManagerProtocol {
                         if userName == name && userName != "Anonym" {
                             isItMe = true
                         }
-                        let user = UserInfo(coins: coins, email: email, name: name, winRate: winRate, isItMe: isItMe)
+                        let user = UserInfo(coins: coins, email: email, name: name, win: win, loose: loose, isItMe: isItMe)
                         users.append(user)
                     }
                     completion?(users)
@@ -258,6 +278,7 @@ struct UserInfo {
     let coins: Double
     let email: String
     let name: String
-    let winRate: Int
+    let win: Int
+    let loose: Int
     let isItMe: Bool
 }

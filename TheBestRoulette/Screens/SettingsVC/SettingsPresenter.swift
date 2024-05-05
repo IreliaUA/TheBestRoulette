@@ -57,24 +57,6 @@ final class SettingsPresenter: SettingsPresenterProtocol {
     
     func deleteAccount() {
         authManager.deleteAccount()
-//        guard let currentUser = Auth.auth().currentUser else {
-//            print(NSError(domain: "AuthError", code: -1, userInfo: ["description": "No current user found"]))
-//            return
-//        }
-//        
-//        let uuid = currentUser.uid
-//        currentUser.delete { [weak self] error in
-//            if let error = error {
-//                print("Error deleting account: \(error.localizedDescription)")
-//                return
-//            }
-//            
-//            self?.deleteUserDataFromFirestore(uuid: uuid) { error in
-//                if let error = error {
-//                    print("Error deleting user data from Firestore: \(error.localizedDescription)")
-//                }
-//            }
-//        }
     }
     
     private func deleteUserDataFromFirestore(uuid: String, completion: @escaping (Error?) -> Void) {
@@ -86,19 +68,7 @@ final class SettingsPresenter: SettingsPresenterProtocol {
         }
     }
     
-//    private func deleteUserDataFromRealtimeDatabase(uid: String, completion: @escaping (Error?) -> Void) {
-//        let ref = Database.database().reference().child("users").child(uid)
-//        ref.removeValue { error, _ in
-//            completion(error)
-//        }
-//    }
-
-    
     func logOut() {
         authManager.logOut()
-        //        do { try Auth.auth().signOut() }
-        //        catch let signOutError as NSError {
-        //            print("Error signing out: %@", signOutError) }
-        //    }
     }
 }

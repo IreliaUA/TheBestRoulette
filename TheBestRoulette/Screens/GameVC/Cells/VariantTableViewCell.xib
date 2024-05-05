@@ -38,8 +38,21 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="oJ5-KH-yUH">
                                 <rect key="frame" x="111.66666666666669" y="9" width="80" height="24"/>
                                 <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LN9-kg-THQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="36.333333333333336" height="24"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Color">
+                                                <attributes>
+                                                    <color key="NSColor" red="1" green="1" blue="0.99081382553021213" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <font key="NSFont" size="16" name="Alatsi-Regular"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9OW-N8-bOU">
-                                        <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
+                                        <rect key="frame" x="55.999999999999986" y="0.0" width="24" height="24"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="24" id="6YD-Us-3uX"/>
@@ -57,19 +70,6 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LN9-kg-THQ">
-                                        <rect key="frame" x="43.666666666666671" y="0.0" width="36.333333333333329" height="24"/>
-                                        <attributedString key="attributedText">
-                                            <fragment content="Color">
-                                                <attributes>
-                                                    <color key="NSColor" red="1" green="1" blue="0.99081382553021213" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <font key="NSFont" size="16" name="Alatsi-Regular"/>
-                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                </attributes>
-                                            </fragment>
-                                        </attributedString>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="dkW-0j-bTz"/>
@@ -96,7 +96,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.017054672795112635" green="0.016497340693822998" blue="0.015277283985303555" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" name="black"/>
                         <constraints>
                             <constraint firstItem="oJ5-KH-yUH" firstAttribute="centerX" secondItem="j12-6e-rvE" secondAttribute="centerX" id="E4O-R6-vm7"/>
                             <constraint firstAttribute="trailing" secondItem="0Rs-gv-Nvg" secondAttribute="trailing" constant="16" id="Gqu-Fy-tYx"/>
@@ -131,6 +131,9 @@
         </tableViewCell>
     </objects>
     <resources>
+        <namedColor name="black">
+            <color red="0.090196078431372548" green="0.082352941176470587" blue="0.066666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="lightOrange">
             <color red="0.87450980392156863" green="0.7803921568627451" blue="0.5725490196078431" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>

@@ -73,7 +73,6 @@
 		39E6EEC32BE026210026E2A8 /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 39E6EEC22BE026210026E2A8 /* FirebaseRemoteConfigSwift */; };
 		39E6EEC52BE026210026E2A8 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 39E6EEC42BE026210026E2A8 /* FirebaseStorage */; };
 		39E6EEC72BE026210026E2A8 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 39E6EEC62BE026210026E2A8 /* FirebaseStorageCombine-Community */; };
-		39ED99EA2BE6F4DF0009FE10 /* NetworkStatusMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39ED99E92BE6F4DF0009FE10 /* NetworkStatusMonitor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -117,7 +116,6 @@
 		39B413902BDEE75C00600AD3 /* Alatsi-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Alatsi-Regular.ttf"; sourceTree = "<group>"; };
 		39C81C0E2BE02B2800D303F6 /* RatingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingTableViewCell.swift; sourceTree = "<group>"; };
 		39C81C0F2BE02B2800D303F6 /* RatingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RatingTableViewCell.xib; sourceTree = "<group>"; };
-		39ED99E92BE6F4DF0009FE10 /* NetworkStatusMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkStatusMonitor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,7 +216,6 @@
 				39B413292BDE553100600AD3 /* Extensions.swift */,
 				399D13A92BE40D23002E99AF /* Alert.swift */,
 				399D13AB2BE40DDB002E99AF /* CustomVisualEffect.swift */,
-				39ED99E92BE6F4DF0009FE10 /* NetworkStatusMonitor.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -414,7 +411,6 @@
 				39B413482BDE56BB00600AD3 /* RatingViewModelFactory.swift in Sources */,
 				39B413212BDE51E800600AD3 /* LogInViewModel.swift in Sources */,
 				39B413222BDE51E800600AD3 /* LogInAssembly.swift in Sources */,
-				39ED99EA2BE6F4DF0009FE10 /* NetworkStatusMonitor.swift in Sources */,
 				39B413272BDE520700600AD3 /* LogInViewController.swift in Sources */,
 				39B413232BDE51E800600AD3 /* LogInViewModelFactory.swift in Sources */,
 				39B412FF2BDE503E00600AD3 /* AppDelegate.swift in Sources */,

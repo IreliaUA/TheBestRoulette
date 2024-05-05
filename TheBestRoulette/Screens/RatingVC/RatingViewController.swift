@@ -39,7 +39,6 @@ final class RatingViewController: UIViewController {
         super.viewDidLoad()
         
         setupUI()
-       // presenter.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {

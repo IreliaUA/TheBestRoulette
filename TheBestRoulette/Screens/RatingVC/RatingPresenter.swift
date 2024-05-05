@@ -44,8 +44,5 @@ final class RatingPresenter: RatingPresenterProtocol {
         authManager.getAllData { users in
             completion?(users)
         }
-//        AuthManager.shared.getAllData { users in
-//           completion?(users)
-//        }
     }
 }

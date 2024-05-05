@@ -62,11 +62,10 @@
                                     </attributedString>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="right" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EKt-eK-wA7">
-                                    <rect key="frame" x="69" y="5" width="276" height="34"/>
+                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="right" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EKt-eK-wA7">
+                                    <rect key="frame" x="69" y="12.333333333333345" width="276" height="19.666666666666671"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="tintColor" name="white"/>
-                                    <nil key="textColor"/>
                                     <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="16"/>
                                     <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                     <connections>
@@ -108,11 +107,10 @@
                                     </attributedString>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="right" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cWc-9y-qom">
-                                    <rect key="frame" x="66" y="5" width="279" height="34"/>
+                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="right" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cWc-9y-qom">
+                                    <rect key="frame" x="66" y="12.333333333333316" width="279" height="19.666666666666671"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="tintColor" name="white"/>
-                                    <nil key="textColor"/>
                                     <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="16"/>
                                     <textInputTraits key="textInputTraits" keyboardType="emailAddress" enablesReturnKeyAutomatically="YES"/>
                                     <connections>
@@ -154,11 +152,10 @@
                                     </attributedString>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="right" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your password" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lrN-HU-ZDX">
-                                    <rect key="frame" x="94" y="5" width="251" height="34"/>
+                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="right" contentVerticalAlignment="center" placeholder="Enter your password" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lrN-HU-ZDX">
+                                    <rect key="frame" x="94" y="13" width="251" height="18"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="tintColor" name="white"/>
-                                    <nil key="textColor"/>
                                     <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="16"/>
                                     <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                     <connections>

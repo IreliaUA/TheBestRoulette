@@ -16,30 +16,6 @@ class TabBarController: UIViewController, UITabBarControllerDelegate {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         initialSetup()
     }
-}
-
-private extension TabBarController {
-    
-    func initialSetup() {
-        
-        view.backgroundColor = .black
-        integrateTabBarVC.delegate = self
-        integrateTabBarVC.tabBar.isTranslucent = false
-
-        integrateTabBarVC.viewControllers = [instantiateRatingsScreen(), instantiateGameScreen(), instantiateSettingsScreen()]
-        
-        let appearance = UITabBarAppearance()
-        appearance.backgroundColor = .black
-        appearance.stackedLayoutAppearance.normal.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "lightGrey")!]
-        appearance.stackedLayoutAppearance.selected.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "lightOrange")!]
-        integrateTabBarVC.tabBar.standardAppearance = appearance
-
-        addChild(integrateTabBarVC, toContainer: view)
-        self.setSelectedIndex(index: 1)
-    }
-}
-
-extension TabBarController {
     
     private func setSelectedIndex(index: Int) {
         self.integrateTabBarVC.selectedIndex = index
@@ -78,5 +54,23 @@ extension TabBarController {
         )
         
         return navigationVC
+    }
+    
+    func initialSetup() {
+        
+        view.backgroundColor = .black
+        integrateTabBarVC.delegate = self
+        integrateTabBarVC.tabBar.isTranslucent = false
+        
+        integrateTabBarVC.viewControllers = [instantiateRatingsScreen(), instantiateGameScreen(), instantiateSettingsScreen()]
+        
+        let appearance = UITabBarAppearance()
+        appearance.backgroundColor = .black
+        appearance.stackedLayoutAppearance.normal.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "lightGrey")!]
+        appearance.stackedLayoutAppearance.selected.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "lightOrange")!]
+        integrateTabBarVC.tabBar.standardAppearance = appearance
+        
+        addChild(integrateTabBarVC, toContainer: view)
+        self.setSelectedIndex(index: 1)
     }
 }

@@ -23,7 +23,6 @@ final class LogInPresenter: LogInPresenterProtocol {
     weak var view: LogInViewControllerProtocol?
     private let viewModelFactory: LogInViewModelFactoryProtocol
     private let authManager: AuthManagerProtocol
-    private var isNetworkAvailable = NetworkStatusMonitor.shared.checkInternetConnectivityRadian()
     
     var isAuth = false
     

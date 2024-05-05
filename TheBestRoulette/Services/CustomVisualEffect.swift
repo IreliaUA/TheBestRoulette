@@ -36,4 +36,3 @@ final class CustomVisualEffectView: UIVisualEffectView {
     private let customIntensity: CGFloat
     private var animator: UIViewPropertyAnimator?
 }
-

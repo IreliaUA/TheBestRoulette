@@ -14,7 +14,6 @@ protocol RatingAssemblyProtocol {
 
 final class RatingAssembly: RatingAssemblyProtocol {
     
-    // Dependencies
     private let viewModelFactory: RatingViewModelFactoryProtocol
     private let authManager: AuthManagerProtocol
     

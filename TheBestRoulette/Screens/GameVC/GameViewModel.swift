@@ -11,4 +11,3 @@ struct GameViewModel {
     var name: String
     var variants: [Variant]
 }
-

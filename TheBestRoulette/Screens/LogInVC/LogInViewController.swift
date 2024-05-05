@@ -61,17 +61,6 @@ final class LogInViewController: UIViewController {
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         view.addGestureRecognizer(tapGesture)
-        
-        
-//                let tabBarController = TabBarController()
-//                tabBarController.modalPresentationStyle = .fullScreen
-//                let transition = CATransition()
-//                transition.duration = 0.40
-//                transition.type = .fade
-//                if let window = UIApplication.shared.windows.first {
-//                    window.layer.add(transition, forKey: "fade")
-//                    window.rootViewController = tabBarController
-//                }
     }
     
     func textFieldSetUp() {
