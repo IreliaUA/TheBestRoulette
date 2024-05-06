@@ -12,7 +12,7 @@ class VariantTableViewCell: UITableViewCell {
     
     @IBOutlet weak var numberLabel: UILabel!
     @IBOutlet weak var colorLabel: UILabel!
-    @IBOutlet weak var cilorView: UIView!
+    @IBOutlet weak var colorView: UIView!
     
     var selectCompletion: (() -> Void)?
     
@@ -32,17 +32,17 @@ class VariantTableViewCell: UITableViewCell {
         }
         
         if let colour = model.colour {
-            cilorView.isHidden = false
+            colorView.isHidden = false
             colorLabel.isHidden = false
             colorLabel.text = "\(colour.rawValue)"
             switch colour {
             case .red:
-                cilorView.backgroundColor = .red
+                colorView.backgroundColor = .red
             case .black:
-                cilorView.backgroundColor = .black
+                colorView.backgroundColor = .black
             }
         } else {
-            cilorView.isHidden = true
+            colorView.isHidden = true
             colorLabel.isHidden = true
         }
         

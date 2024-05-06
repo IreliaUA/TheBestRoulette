@@ -56,10 +56,14 @@ final class GameViewController: UIViewController {
         super.viewDidLoad()
         
         setupUI()
-        presenter.viewDidLoad()
         betTableView.isHidden = true
         winLooseView.isHidden = true
         winLooseBlureView.isHidden = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter.viewDidLoad()
     }
     
     // MARK: - Private Methods
@@ -123,7 +127,7 @@ final class GameViewController: UIViewController {
     
     // MARK: - IBActions
     
-    @IBAction func temp(_ sender: Any) {
+    @IBAction func playAction(_ sender: Any) {
         
         if self.bet <= 0.0 || self.choosenVariat == nil {
             showAlert(title: "Choose your bet", okText: "ok")

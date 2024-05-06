@@ -255,7 +255,7 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <action selector="temp:" destination="-1" eventType="touchUpInside" id="sHc-DJ-biK"/>
+                        <action selector="playAction:" destination="-1" eventType="touchUpInside" id="KbE-cN-h7Z"/>
                     </connections>
                 </button>
                 <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hZq-kG-nMa">
@@ -284,8 +284,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XWt-7v-5QJ">
                     <rect key="frame" x="40" y="351" width="313" height="150"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="lZG-WG-aK8">
-                            <rect key="frame" x="16" y="8" width="281" height="87.666666666666671"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="lZG-WG-aK8">
+                            <rect key="frame" x="16" y="8" width="281" height="85.666666666666671"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R4X-HJ-Jei">
                                     <rect key="frame" x="0.0" y="0.0" width="281" height="28.333333333333332"/>
@@ -301,7 +301,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nbm-x1-Cby">
-                                    <rect key="frame" x="0.0" y="37.333333333333314" width="281" height="20.666666666666671"/>
+                                    <rect key="frame" x="0.0" y="36.333333333333314" width="281" height="20.666666666666671"/>
                                     <attributedString key="attributedText">
                                         <fragment content="Label">
                                             <attributes>
@@ -314,7 +314,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zuR-eB-C9U">
-                                    <rect key="frame" x="0.0" y="67" width="281" height="20.666666666666671"/>
+                                    <rect key="frame" x="0.0" y="65" width="281" height="20.666666666666671"/>
                                     <attributedString key="attributedText">
                                         <fragment content="Label">
                                             <attributes>
@@ -329,7 +329,7 @@
                             </subviews>
                         </stackView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ceF-wT-vGJ">
-                            <rect key="frame" x="62.333333333333329" y="101.66666666666669" width="188.33333333333337" height="42.333333333333343"/>
+                            <rect key="frame" x="62.333333333333329" y="99.666666666666686" width="188.33333333333337" height="44.333333333333343"/>
                             <color key="tintColor" name="neon"/>
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="plain">

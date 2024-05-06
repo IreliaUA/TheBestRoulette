@@ -123,8 +123,8 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
-                <outlet property="cilorView" destination="9OW-N8-bOU" id="2BA-U2-tvw"/>
                 <outlet property="colorLabel" destination="LN9-kg-THQ" id="lJV-db-Adb"/>
+                <outlet property="colorView" destination="9OW-N8-bOU" id="397-6R-u1E"/>
                 <outlet property="numberLabel" destination="0bB-Lw-wWl" id="6Yk-es-3I1"/>
             </connections>
             <point key="canvasLocation" x="64.885496183206101" y="18.30985915492958"/>
