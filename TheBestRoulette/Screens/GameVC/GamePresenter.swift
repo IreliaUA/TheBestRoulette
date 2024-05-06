@@ -77,27 +77,27 @@ final class GamePresenter: GamePresenterProtocol {
                 case .rangeVariant(let closedRange):
                     if let numberAsInt = Int(randomElement.number) {
                         if closedRange.contains(numberAsInt) {
-                            self.win(bet: bet * userVariant.coef)
+                            self.win(bet: bet * userVariant.coef, variant: randomElement)
                             print("Win Range")
                         } else {
                             print("loose range")
-                            self.loose(bet: bet)
+                            self.loose(bet: bet, variant: randomElement)
                         }
                     }
                 case .even:
                     if let numberAsInt = Int(randomElement.number) {
                         if numberAsInt % 2 == 0 {
-                            self.win(bet: bet * userVariant.coef)
+                            self.win(bet: bet * userVariant.coef, variant: randomElement)
                         } else {
-                            self.loose(bet: bet)
+                            self.loose(bet: bet, variant: randomElement)
                         }
                     }
                 case .odd:
                     if let numberAsInt = Int(randomElement.number) {
                         if numberAsInt % 2 != 0 {
-                            self.win(bet: bet * userVariant.coef)
+                            self.win(bet: bet * userVariant.coef, variant: randomElement)
                         } else {
-                            self.loose(bet: bet)
+                            self.loose(bet: bet, variant: randomElement)
                         }
                     }
                 case .number:
@@ -106,21 +106,21 @@ final class GamePresenter: GamePresenterProtocol {
                         let randomNumberAsDouble = Double(randomElement.number)
                     {
                         if numberAsDouble == randomNumberAsDouble {
-                            self.win(bet: bet * randomElement.coef)
+                            self.win(bet: bet * randomElement.coef, variant: randomElement)
                         } else {
-                            self.loose(bet: bet)
+                            self.loose(bet: bet, variant: randomElement)
                         }
                     }
                 case .color:
                     if let userColor = userVariant.colour,
                        let randomColor = randomElement.colour {
                         if userColor == randomColor {
-                            self.win(bet: bet * userVariant.coef)
+                            self.win(bet: bet * userVariant.coef, variant: randomElement)
                         } else {
-                            self.loose(bet: bet)
+                            self.loose(bet: bet, variant: randomElement)
                         }
                     } else {
-                        self.loose(bet: bet)
+                        self.loose(bet: bet, variant: randomElement)
                     }
                 }
             } else {
@@ -129,19 +129,19 @@ final class GamePresenter: GamePresenterProtocol {
         }
     }
     
-    func loose(bet: Double) {
+    func loose(bet: Double, variant: Variant) {
         if coins != 0 {
             coins -= bet
         }
-        self.view?.resultOfPlay(result: "Try again!", isWin: "Better luck next time!")
+        self.view?.resultOfPlay(result: "Try again!", isWin: "Better luck next time!", variant: variant)
         changeUserCoins(newCoins: coins, winRate: .loose)
     }
     
-    func win(bet: Double) {
+    func win(bet: Double, variant: Variant) {
         if coins != 0 {
             coins += bet
         }
-        self.view?.resultOfPlay(result: "+ \(bet) coins", isWin: "You win!")
+        self.view?.resultOfPlay(result: "+ \(bet) coins", isWin: "You win!", variant: variant)
         changeUserCoins(newCoins: coins, winRate: .win)
     }
     

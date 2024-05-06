@@ -10,7 +10,7 @@ import UIKit
 protocol GameViewControllerProtocol: UIViewController {
     func setup(with: GameViewModel)
     func updateCoinsLabel(coins: Double)
-    func resultOfPlay(result: String, isWin: String)
+    func resultOfPlay(result: String, isWin: String, variant: Variant)
     func refreshStepper()
 }
 
@@ -32,6 +32,7 @@ final class GameViewController: UIViewController {
     @IBOutlet weak var howManyLabel: UILabel!
     @IBOutlet weak var closeWinLooseButton: UIButton!
     @IBOutlet weak var winLooseBlureView: UIVisualEffectView!
+    @IBOutlet weak var resultLabel: UILabel!
     // MARK: - Properties
     
     private let presenter: GamePresenterProtocol
@@ -90,11 +91,14 @@ final class GameViewController: UIViewController {
         bet = Double(cappedValue)
     }
     
-    func resultOfPlay(result: String, isWin: String) {
+    func resultOfPlay(result: String, isWin: String, variant: Variant) {
         winLooseView.isHidden.toggle()
         winLooseBlureView.isHidden.toggle()
         howManyLabel.text = "\(result)"
         youWinLooseLabel.text = "\(isWin)"
+        if let colour = variant.colour {
+            resultLabel.text = "\(variant.number) \(colour.rawValue)"
+        }
     }
     
     func spinRoulete(variant: Variant) {

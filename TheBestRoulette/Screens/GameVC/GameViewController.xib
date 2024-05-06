@@ -20,6 +20,7 @@
                 <outlet property="howManyLabel" destination="zuR-eB-C9U" id="c3e-Hz-U8U"/>
                 <outlet property="nameLabel" destination="7YU-ch-xCW" id="4Ei-IZ-P0v"/>
                 <outlet property="playButton" destination="10L-ch-ZaO" id="OgU-WF-bpD"/>
+                <outlet property="resultLabel" destination="nbm-x1-Cby" id="JgV-bp-xqW"/>
                 <outlet property="rouletteSpinView" destination="ght-IN-0em" id="2NM-y8-Z81"/>
                 <outlet property="stepperBet" destination="bb5-iN-GRY" id="fEU-0h-F7G"/>
                 <outlet property="stepperLabel" destination="FEk-Ww-Ggi" id="wwm-kM-ugn"/>
@@ -283,8 +284,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XWt-7v-5QJ">
                     <rect key="frame" x="40" y="351" width="313" height="150"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="lZG-WG-aK8">
-                            <rect key="frame" x="16" y="16" width="281" height="61"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="lZG-WG-aK8">
+                            <rect key="frame" x="16" y="8" width="281" height="87.666666666666671"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R4X-HJ-Jei">
                                     <rect key="frame" x="0.0" y="0.0" width="281" height="28.333333333333332"/>
@@ -299,8 +300,21 @@
                                     </attributedString>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nbm-x1-Cby">
+                                    <rect key="frame" x="0.0" y="37.333333333333314" width="281" height="20.666666666666671"/>
+                                    <attributedString key="attributedText">
+                                        <fragment content="Label">
+                                            <attributes>
+                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <font key="NSFont" size="16" name="Alatsi-Regular"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                    <nil key="highlightedColor"/>
+                                </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zuR-eB-C9U">
-                                    <rect key="frame" x="0.0" y="40.333333333333314" width="281" height="20.666666666666671"/>
+                                    <rect key="frame" x="0.0" y="67" width="281" height="20.666666666666671"/>
                                     <attributedString key="attributedText">
                                         <fragment content="Label">
                                             <attributes>
@@ -315,7 +329,7 @@
                             </subviews>
                         </stackView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ceF-wT-vGJ">
-                            <rect key="frame" x="62.333333333333329" y="91.666666666666686" width="188.33333333333337" height="42.333333333333343"/>
+                            <rect key="frame" x="62.333333333333329" y="101.66666666666669" width="188.33333333333337" height="42.333333333333343"/>
                             <color key="tintColor" name="neon"/>
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="plain">
@@ -351,11 +365,12 @@
                     </subviews>
                     <color key="backgroundColor" name="lightBlack"/>
                     <constraints>
+                        <constraint firstItem="ceF-wT-vGJ" firstAttribute="top" secondItem="lZG-WG-aK8" secondAttribute="bottom" constant="6" id="C52-QQ-gaR"/>
                         <constraint firstAttribute="height" constant="150" id="JWw-sd-Rys"/>
                         <constraint firstItem="ceF-wT-vGJ" firstAttribute="centerX" secondItem="XWt-7v-5QJ" secondAttribute="centerX" id="lkK-ZZ-wd7"/>
                         <constraint firstAttribute="trailing" secondItem="lZG-WG-aK8" secondAttribute="trailing" constant="16" id="seu-iM-TrO"/>
-                        <constraint firstAttribute="bottom" secondItem="ceF-wT-vGJ" secondAttribute="bottom" constant="16" id="uII-Ch-wqi"/>
-                        <constraint firstItem="lZG-WG-aK8" firstAttribute="top" secondItem="XWt-7v-5QJ" secondAttribute="top" constant="16" id="xeU-C6-ODA"/>
+                        <constraint firstAttribute="bottom" secondItem="ceF-wT-vGJ" secondAttribute="bottom" constant="6" id="uII-Ch-wqi"/>
+                        <constraint firstItem="lZG-WG-aK8" firstAttribute="top" secondItem="XWt-7v-5QJ" secondAttribute="top" constant="8" id="xeU-C6-ODA"/>
                         <constraint firstItem="lZG-WG-aK8" firstAttribute="leading" secondItem="XWt-7v-5QJ" secondAttribute="leading" constant="16" id="yn5-OH-E03"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>

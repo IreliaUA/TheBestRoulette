@@ -24,8 +24,6 @@ final class LogInPresenter: LogInPresenterProtocol {
     private let viewModelFactory: LogInViewModelFactoryProtocol
     private let authManager: AuthManagerProtocol
     
-    var isAuth = false
-    
     // MARK: - Initialization
     
     init(

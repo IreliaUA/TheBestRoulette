@@ -16,7 +16,6 @@ protocol AuthManagerProtocol {
     func signInAnonymously(completion: ((Bool) -> Void)?)
     func getAllData(completion: (([UserInfo]) -> Void)?)
     func changeUserCoins(with newCoins: Double, winRate: WinRate, completion: (() -> Void)?)
-    func changeUserWinrate(with newWinRate: Int, completion: (() -> Void)?)
     func getCurrentUserData(completion: ((UserInfo?) -> Void)?)
     func logOut()
     func deleteAccount()
@@ -24,19 +23,11 @@ protocol AuthManagerProtocol {
 
 final class AuthManager: AuthManagerProtocol {
     
-    var isAuth = false
-    
-    init() {
-        checkStatus()
-    }
-    
     func logIn(email: String, pass: String, completion: ((Bool) -> Void)?) {
         Auth.auth().signIn(withEmail: email, password: pass) { result, error in
             if error == nil {
-                print("Ошибок нет, ты вошел в свой акк!!!")
                 completion?(true)
             } else {
-                print("ошибка \(error)")
                 completion?(false)
             }
         }
@@ -45,7 +36,6 @@ final class AuthManager: AuthManagerProtocol {
     func register(email: String, pass: String, name: String, completion: ((Bool) -> Void)?) {
         Auth.auth().createUser(withEmail: email, password: pass) { result, error in
             if error == nil {
-                print("Ошибок нет, \(result), userID = \(result?.user.uid)")
                 let ref = Database.database().reference().child("users")
                 if let uid = result?.user.uid {
                     ref.child(uid).updateChildValues([
@@ -58,7 +48,6 @@ final class AuthManager: AuthManagerProtocol {
                     completion?(true)
                 }
             } else {
-                print("Ошибka \(result) AND \(error)")
                 completion?(false)
             }
         }
@@ -103,26 +92,21 @@ final class AuthManager: AuthManagerProtocol {
         
         let uuid = currentUser.uid
         currentUser.delete { [weak self] error in
+            self?.deleteUserFromRealtimeDatabase(uuid: uuid) {
+                self?.logOut()
+            }
             if let error = error {
                 print("Error deleting account: \(error.localizedDescription)")
                 return
             }
-            
-            self?.deleteUserFromRealtimeDatabase(uuid: uuid) { error in
-                if let error = error {
-                    print("Error deleting user data from Realtime Database: \(error.localizedDescription)")
-                } else {
-                    print("User data deleted from Realtime Database successfully")
-                }
-            }
         }
     }
     
-    func deleteUserFromRealtimeDatabase(uuid: String, completion: @escaping (Error?) -> Void) {
+    func deleteUserFromRealtimeDatabase(uuid: String, completion: (() -> Void)?) {
         let ref = Database.database().reference().child("users").child(uuid)
         
         ref.removeValue { error, _ in
-            completion(error)
+            completion?()
         }
     }
     
@@ -141,48 +125,36 @@ final class AuthManager: AuthManagerProtocol {
         }
     }
     
-    func checkStatus() {
-        Auth.auth().addStateDidChangeListener { auth, user in
-            if user == nil {
-                self.isAuth = false
-            } else {
-                self.isAuth = true
-            }
-        }
-    }
-    
     func changeUserCoins(with newCoins: Double, winRate: WinRate, completion: (() -> Void)?) {
-        if isAuth {
-            if let uid = Auth.auth().currentUser?.uid {
-                let ref = Database.database().reference().child("users").child(uid)
-                ref.getData { error, data in
-                    var looseCount = 0
-                    var winCount = 0
-                    
-                    if let userData = data?.value as? [String: Any],
-                       let win = userData["win"] as? Int,
-                       let loose = userData["loose"] as? Int {
-                        looseCount = loose
-                        winCount = win
-                        var newLooseCount = loose + 1
-                        var newWinCount = win + 1
-                        var parametersToChange: [AnyHashable: Any] = ["coins": newCoins]
-                        switch winRate {
-                        case .win:
-                            parametersToChange["win"] = newWinCount
-                        case .loose:
-                            parametersToChange["loose"] = newLooseCount
-                        case .all:
-                            parametersToChange["win"] = newWinCount
-                            parametersToChange["loose"] = newLooseCount
-                        }
-                        ref.updateChildValues(parametersToChange) { (error, _) in
-                            if let error = error {
-                                print("ошибка, \(error)")
-                            } else {
-                                print("coins успешно обновлено")
-                                completion?()
-                            }
+        if let uid = Auth.auth().currentUser?.uid {
+            let ref = Database.database().reference().child("users").child(uid)
+            ref.getData { error, data in
+                var looseCount = 0
+                var winCount = 0
+                
+                if let userData = data?.value as? [String: Any],
+                   let win = userData["win"] as? Int,
+                   let loose = userData["loose"] as? Int {
+                    looseCount = loose
+                    winCount = win
+                    var newLooseCount = loose + 1
+                    var newWinCount = win + 1
+                    var parametersToChange: [AnyHashable: Any] = ["coins": newCoins]
+                    switch winRate {
+                    case .win:
+                        parametersToChange["win"] = newWinCount
+                    case .loose:
+                        parametersToChange["loose"] = newLooseCount
+                    case .all:
+                        parametersToChange["win"] = newWinCount
+                        parametersToChange["loose"] = newLooseCount
+                    }
+                    ref.updateChildValues(parametersToChange) { (error, _) in
+                        if let error = error {
+                            print("ошибка, \(error)")
+                        } else {
+                            print("coins успешно обновлено")
+                            completion?()
                         }
                     }
                 }
@@ -208,25 +180,6 @@ final class AuthManager: AuthManagerProtocol {
             }
         } else {
             completion?(nil)
-        }
-    }
-    
-    func changeUserWinrate(with newWinRate: Int, completion: (() -> Void)?) {
-        if isAuth {
-            if let uid = Auth.auth().currentUser?.uid {
-                let ref = Database.database().reference().child("users").child(uid)
-                ref.getData { error, data in
-                    print(data)
-                }
-                ref.updateChildValues(["winRate": newWinRate]) { (error, _) in
-                    if let error = error {
-                        print("ошибка, \(error)")
-                    } else {
-                        print("winRate успешно обновлено")
-                        completion?()
-                    }
-                }
-            }
         }
     }
     
