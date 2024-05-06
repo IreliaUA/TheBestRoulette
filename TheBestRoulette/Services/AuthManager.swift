@@ -110,21 +110,6 @@ final class AuthManager: AuthManagerProtocol {
         }
     }
     
-    func createUserInFirestore(uuid: String, completion: @escaping (Error?) -> Void) {
-        let userData: [String: Any] = [
-            "uuid": uuid,
-            "winRate": 0,
-            "win": 0,
-            "loose": 0,
-            "coins": 2000
-        ]
-        
-        Firestore.firestore().collection("Users").document(uuid).setData(userData) { error in
-            completion(error)
-            
-        }
-    }
-    
     func changeUserCoins(with newCoins: Double, winRate: WinRate, completion: (() -> Void)?) {
         if let uid = Auth.auth().currentUser?.uid {
             let ref = Database.database().reference().child("users").child(uid)
